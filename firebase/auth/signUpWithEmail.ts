@@ -3,7 +3,15 @@ import { auth, createUserWithEmailAndPassword, db, serverTimestamp } from "@/fir
 import { generateFirebaseAuthErrorMessage } from "./authError";
 import { FirebaseError } from "firebase/app";
 import { updateProfile } from "firebase/auth";
-type SignUpWithEmailFunc = (fullName: string, email: string, password: string, setError: (error: string) => void, postActions: () => void) => void;
+import { sendEmailVerification } from "firebase/auth";
+import { User } from "firebase/auth";
+type SignUpWithEmailFunc = (
+  fullName: string,
+  email: string,
+  password: string,
+  setError: (error: string) => void,
+  postActions: (user: User) => void
+) => void;
 
 export const signUpWithEmail: SignUpWithEmailFunc = async (fullName, email, password, setError, postActions) => {
   try {
@@ -32,7 +40,8 @@ export const signUpWithEmail: SignUpWithEmailFunc = async (fullName, email, pass
         full_name: fullName,
         created_at: serverTimestamp(),
       });
-      postActions();
+      await sendEmailVerification(user);
+      postActions(user);
     }
   } catch (error: any) {
     if (error instanceof FirebaseError) {
