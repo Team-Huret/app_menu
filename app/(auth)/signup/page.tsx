@@ -4,67 +4,41 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { logInWithGoogle } from "@/firebase/auth/logInWithGoogle";
-import { useState } from "react";
-import { signUpWithEmail } from "@/firebase/auth/signUpWithEmail";
-import { ImSpinner9 } from "react-icons/im";
-import { BiBadgeCheck } from "react-icons/bi";
-import { User } from "firebase/auth";
-import { sendEmailVerification } from "firebase/auth";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
-import { useRouter } from "next/navigation";
+import { useState, useTransition } from "react";
+import { set, z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { RegisterSchema } from "@/schemas/auth";
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import AuthError from "@/components/auth/AuthError";
+import AuthSuccess from "@/components/auth/AuthSuccess";
+import { register } from "@/actions/auth";
 
 export default function Signup() {
-  const router = useRouter();
-  const [password, setPassword] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState<User | null>(null);
-  const [error, setError] = useState("");
-  const [open, setOpen] = useState(false);
-  const [resendingEmail, setRensendingEmail] = useState(false);
+  const [error, setError] = useState<string | undefined>("");
+  const [succes, setSucces] = useState<string | undefined>("");
+  const [isPending, startTransition] = useTransition();
 
-  const handleSubmit = () => {
-    if (password === "" || firstName === "" || lastName === "" || email === "") {
-      setError("Please fill in all fields");
-    } else {
-      setLoading(true);
-      const fullName = firstName + " " + lastName;
-      signUpWithEmail(fullName, email, password, setError, postactionsEmail);
-    }
-  };
-  const postactionsEmail = (user: User) => {
-    setUser(user);
-    setLoading(false);
+  const form = useForm<z.infer<typeof RegisterSchema>>({
+    resolver: zodResolver(RegisterSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+      firstName: "",
+      lastName: "",
+    },
+  });
+  const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
     setError("");
-    setOpen(true);
+    setSucces("");
+    startTransition(() => {
+      register(values).then((data) => {
+        setSucces(data.success);
+        setError(data.error);
+      });
+    });
   };
-  const postactionsGoogle = () => {
-    setLoading(false);
-    setError("");
-    router.push("/dashboard");
-  };
-  const handleResendEmail = async (user: User) => {
-    setRensendingEmail(true);
-    try {
-      await sendEmailVerification(user);
-    } catch (error) {
-      setError("Error sending email verification, please try again");
-      setRensendingEmail(false);
-    }
-    setError("");
-    setRensendingEmail(false);
-  };
+
   return (
     <div className="h-screen w-screen flex items-center justify-center p-3 sm:p-0">
       <Card className="mx-auto max-w-sm ">
@@ -73,43 +47,89 @@ export default function Signup() {
           <CardDescription>Enter your information to create an account</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid gap-4">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="grid gap-2">
-                <Label htmlFor="first-name">First name</Label>
-                <Input id="first-name" placeholder="Max" required onChange={(e) => setFirstName(e.target.value)} />
+          <Form {...form}>
+            <div className="grid gap-4">
+              <div className="grid grid-cols-2 gap-4">
+                <FormField
+                  control={form.control}
+                  name="firstName"
+                  render={({ field }: any) => (
+                    <div className="grid gap-2">
+                      <FormItem>
+                        <FormLabel>First Name</FormLabel>
+                        <FormControl>
+                          <Input {...field} placeholder="John" type="text" disabled={isPending} required />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    </div>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="lastName"
+                  render={({ field }: any) => (
+                    <div className="grid gap-2">
+                      <FormItem>
+                        <FormLabel>Last Name</FormLabel>
+                        <FormControl>
+                          <Input {...field} placeholder="Doe" type="text" disabled={isPending} required />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    </div>
+                  )}
+                />
               </div>
-              <div className="grid gap-2">
-                <Label htmlFor="last-name">Last name</Label>
-                <Input id="last-name" placeholder="Robinson" required onChange={(e) => setLastName(e.target.value)} />
-              </div>
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }: any) => (
+                  <div className="grid gap-2">
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input {...field} placeholder="m@example.com" type="email" disabled={isPending} required />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  </div>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }: any) => (
+                  <div className="grid gap-2">
+                    <FormItem>
+                      <FormLabel>Password</FormLabel>
+                      <FormControl>
+                        <Input {...field} placeholder="******" type="password" disabled={isPending} required />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  </div>
+                )}
+              />
+              <AuthError message={error} />
+              <AuthSuccess message={succes} />
+              <Button type="submit" className="w-full" disabled={isPending} onClick={form.handleSubmit(() => {})}>
+                Create an account
+              </Button>
+              <Button variant="outline" className="w-full">
+                Sign up with Google
+              </Button>
             </div>
-            <div className="grid gap-2">
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" placeholder="m@example.com" required onChange={(e) => setEmail(e.target.value)} />
+            <div className="mt-4 text-center text-sm">
+              Already have an account?{" "}
+              <Link href="/login" className="underline">
+                Sign in
+              </Link>
             </div>
-            <div className="grid gap-2">
-              <Label htmlFor="password">Password</Label>
-              <Input id="password" type="password" required onChange={(e) => setPassword(e.target.value)} />
-            </div>
-            <p className="text-red-500 text-sm">{error}</p>
-            <Button type="submit" className="w-full" onClick={handleSubmit}>
-              {loading && <ImSpinner9 className="animate-spin size-4 mr-3" />}
-              Create an account
-            </Button>
-            <Button variant="outline" className="w-full" onClick={() => logInWithGoogle(postactionsGoogle, setError)}>
-              Sign up with Google
-            </Button>
-          </div>
-          <div className="mt-4 text-center text-sm">
-            Already have an account?{" "}
-            <Link href="/login" className="underline">
-              Sign in
-            </Link>
-          </div>
+          </Form>
         </CardContent>
       </Card>
-      <AlertDialog open={open} onOpenChange={setOpen}>
+      {/* <AlertDialog open={open} onOpenChange={setOpen}>
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>
@@ -124,28 +144,13 @@ export default function Signup() {
             <p className="text-red-500 text-sm">{error}</p>
           </AlertDialogHeader>
           <AlertDialogFooter className="flex justify-end items-center gap-x-2">
-            {user &&
-              (resendingEmail ? (
-                <Button disabled>
-                  <ImSpinner9 className="animate-spin size-4 mr-3" />
-                  Resend Email
-                </Button>
-              ) : (
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    handleResendEmail(user);
-                  }}
-                >
-                  Resend Email
-                </Button>
-              ))}
+            <Button variant="outline">Resend Email</Button>
             <Button>
               <Link href="/login">Login</Link>
             </Button>
           </AlertDialogFooter>
         </AlertDialogContent>
-      </AlertDialog>
+      </AlertDialog> */}
     </div>
   );
 }
