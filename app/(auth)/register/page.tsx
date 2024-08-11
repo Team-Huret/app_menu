@@ -14,7 +14,7 @@ import AuthError from "@/components/auth/AuthError";
 import AuthSuccess from "@/components/auth/AuthSuccess";
 import { register } from "@/actions/auth";
 
-export default function Signup() {
+export default function Register() {
   const [error, setError] = useState<string | undefined>("");
   const [succes, setSucces] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
