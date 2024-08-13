@@ -8,6 +8,11 @@ generator client {
   provider = "prisma-client-js"
 }
 
+enum UserRole {
+  SUPER_ADMIN
+  ADMIN
+  USER
+}
 model User {
   id            String          @id @default(cuid())
   name          String?
@@ -16,7 +21,8 @@ model User {
   password      String?
   image         String?
   accounts      Account[]
- 
+  firstLogin     Boolean         @default(true)
+  role          UserRole?   
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -42,3 +48,18 @@ model Account {
   @@id([provider, providerAccountId])
 }
 
+model Business {
+  businessId               String   @id @default(cuid())
+  name             String
+  type             String
+  description      String?
+  email            String?   @unique
+  phone            String?
+  country          String
+  city             String?
+  postCode         String?
+  street_and_number String?
+  district         String?
+  currency         String
+  logo             String?
+}

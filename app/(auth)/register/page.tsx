@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState, useTransition } from "react";
-import { set, z } from "zod";
+import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { RegisterSchema } from "@/data/schemas/auth";
@@ -13,8 +13,10 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import AuthError from "@/components/auth/AuthError";
 import AuthSuccess from "@/components/auth/AuthSuccess";
 import { register } from "@/server/actions/auth";
+import { useRouter } from "next/navigation";
 
 export default function Register() {
+  const router = useRouter();
   const [error, setError] = useState<string | undefined>("");
   const [succes, setSucces] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
@@ -35,6 +37,7 @@ export default function Register() {
       register(values).then((data) => {
         setSucces(data.success);
         setError(data.error);
+        router.push("/login");
       });
     });
   };

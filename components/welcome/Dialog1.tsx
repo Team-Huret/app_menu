@@ -1,10 +1,10 @@
-import React from "react";
+"use client";
 import { AlertDialogDescription, AlertDialogHeader, AlertDialogTitle, AlertDialogFooter } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import { setupStore } from "@/data/global_state/setupStore";
+import { welcomeStore } from "@/data/global_state/welcomeStore";
 
 export default function Dialog1() {
-  const { increaseDialogCounter } = setupStore();
+  const { increaseDialogCounter } = welcomeStore();
   return (
     <>
       <AlertDialogHeader>

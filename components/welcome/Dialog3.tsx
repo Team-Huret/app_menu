@@ -1,13 +1,13 @@
 "use client";
 import { AlertDialogDescription, AlertDialogHeader, AlertDialogTitle, AlertDialogFooter } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import { setupStore } from "@/data/global_state/setupStore";
+import { welcomeStore } from "@/data/global_state/welcomeStore";
 import FeatureCard from "@/components/welcome/FeatureCard";
 import { features } from "@/data/static/Features";
 import { useState } from "react";
 
 export default function Dialog3() {
-  const { increaseDialogCounter, featureList, pushFeature, removeFeature } = setupStore();
+  const { increaseDialogCounter, featureList, pushFeature, removeFeature } = welcomeStore();
   const [error, setError] = useState("");
 
   const handleFeatureClick = (featureName: string) => {

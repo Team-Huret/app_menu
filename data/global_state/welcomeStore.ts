@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 // Define the shape of the global state
-interface AppState {
+interface WelcomeStore {
   dialogCounter: number;
   increaseDialogCounter: () => void;
   resetDialogCounter: () => void;
@@ -24,7 +24,7 @@ interface AppState {
 }
 
 // Create the zustand store
-export const setupStore = create<AppState>((set) => ({
+export const welcomeStore = create<WelcomeStore>((set) => ({
   dialogCounter: 0,
   increaseDialogCounter: () => set((state) => ({ dialogCounter: state.dialogCounter + 1 })),
   resetDialogCounter: () => set({ dialogCounter: 1 }),

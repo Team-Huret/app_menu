@@ -1,13 +1,8 @@
 "use client";
 import { AlertDialogDescription, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { Progress } from "@/components/ui/progress";
-import { setupStore } from "@/data/global_state/setupStore";
 
 export default function Dialog4() {
-  const { countryValue, languageValue, businessTypeValue, businessName, currencyValue, ownership, featureList, resetDialogCounter } = setupStore(
-    (state) => state
-  );
-
   return (
     <>
       <AlertDialogHeader>
