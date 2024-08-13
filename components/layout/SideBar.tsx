@@ -10,16 +10,17 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { TbLogout } from "react-icons/tb";
 
 import { logout } from "@/server/actions/auth";
+import Link from "next/link";
 
 export default function SideBar() {
   const navLinks = [
-    { name: "Dashboard", icon: <RxDashboard className="size-5" /> },
-    { name: "My Business", icon: <GoHome className="size-5" /> },
-    { name: "Menu", icon: <MdRestaurantMenu className="size-5" /> },
-    { name: "Events", icon: <BiParty className="size-5" /> },
-    { name: "Booking", icon: <IoIosCalendar className="size-5" /> },
-    { name: "Discounts", icon: <MdOutlineDiscount className="size-5" /> },
-    { name: "Analytics", icon: <IoAnalytics className="size-5" /> },
+    { name: "Dashboard", icon: <RxDashboard className="size-5" />, href: "/dashboard" },
+    { name: "My Business", icon: <GoHome className="size-5" />, href: "/dashboard/my-business" },
+    { name: "Menu", icon: <MdRestaurantMenu className="size-5" />, href: "/dashboard/menu" },
+    { name: "Events", icon: <BiParty className="size-5" />, href: "/dashboard/events" },
+    { name: "Booking", icon: <IoIosCalendar className="size-5" />, href: "/dashboard/booking" },
+    { name: "Discounts", icon: <MdOutlineDiscount className="size-5" />, href: "/dashboard/discounts" },
+    { name: "Analytics", icon: <IoAnalytics className="size-5" />, href: "/dashboard/analytics" },
   ];
   return (
     <div className="sticky top-0 z-10 h-screen bottom-0 left-0 flex">
@@ -30,11 +31,11 @@ export default function SideBar() {
           </div>
           <div className="p-2 py-5 space-y-1 border-b border-gray-300">
             {navLinks.map((navLink, index) => (
-              <div key={index} className="block px-4 py-2 hover:bg-gray-100 rounded-lg cursor-pointer">
+              <Link key={index} href={navLink.href} className="block px-4 py-2 hover:bg-gray-100 rounded-lg cursor-pointer">
                 <span className="flex items-center gap-x-2 font-medium">
                   {navLink.icon} {navLink.name}
                 </span>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
