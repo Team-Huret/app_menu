@@ -1,3 +1,4 @@
+"use client";
 import { MdRestaurantMenu } from "react-icons/md";
 import { IoIosCalendar } from "react-icons/io";
 import { IoAnalytics } from "react-icons/io5";

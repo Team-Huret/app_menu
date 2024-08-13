@@ -1,6 +1,6 @@
 import InformationsBlock from "@/components/tabs/business/InformationsBlock";
 import SocialBlock from "@/components/tabs/business/SocialBlock";
-import TeamBlock from "./TeamBlock";
+import TeamBlock from "@/components/tabs/business/TeamBlock";
 
 export default function MyBusiness() {
   return (

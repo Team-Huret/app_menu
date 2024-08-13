@@ -1,4 +1,3 @@
-import React from "react";
 import { LuFolders } from "react-icons/lu";
 import { MdDragIndicator } from "react-icons/md";
 
