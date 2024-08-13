@@ -7,11 +7,11 @@ import { Input } from "@/components/ui/input";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { LoginSchema } from "@/schemas/auth";
+import { LoginSchema } from "@/data/schemas/auth";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import AuthError from "@/components/auth/AuthError";
 import AuthSuccess from "@/components/auth/AuthSuccess";
-import { login } from "@/actions/auth";
+import { login } from "@/server/actions/auth";
 
 export default function Login() {
   const [error, setError] = useState<string | undefined>("");
@@ -30,8 +30,7 @@ export default function Login() {
     setSucces("");
     startTransition(() => {
       login(values).then((data) => {
-        setSucces(data.success);
-        setError(data.error);
+        setError(data?.error);
       });
     });
   };
@@ -82,7 +81,7 @@ export default function Login() {
               />
               <AuthError message={error} />
               <AuthSuccess message={succes} />
-              <Button type="submit" className="w-full" disabled={isPending} onClick={form.handleSubmit(() => {})}>
+              <Button type="submit" className="w-full" disabled={isPending} onClick={form.handleSubmit(onSubmit)}>
                 Login
               </Button>
               <Button variant="outline" className="w-full">

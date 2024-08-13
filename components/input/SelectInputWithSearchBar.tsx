@@ -5,7 +5,7 @@ import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ChevronsUpDown } from "lucide-react";
 import { useState } from "react";
-import { capitalizeFirstLetter } from "@/utils/stringFunctions";
+import { capitalizeFirstLetter } from "@/lib/functions/stringFunctions";
 
 export default function SelectInputWithSearchBar({ value, setValue, data }: { value: string; setValue: (item: string) => void; data: string[] }) {
   const [open, setOpen] = useState(false);

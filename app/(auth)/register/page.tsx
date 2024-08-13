@@ -8,11 +8,11 @@ import { useState, useTransition } from "react";
 import { set, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { RegisterSchema } from "@/schemas/auth";
+import { RegisterSchema } from "@/data/schemas/auth";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import AuthError from "@/components/auth/AuthError";
 import AuthSuccess from "@/components/auth/AuthSuccess";
-import { register } from "@/actions/auth";
+import { register } from "@/server/actions/auth";
 
 export default function Register() {
   const [error, setError] = useState<string | undefined>("");
@@ -113,7 +113,7 @@ export default function Register() {
               />
               <AuthError message={error} />
               <AuthSuccess message={succes} />
-              <Button type="submit" className="w-full" disabled={isPending} onClick={form.handleSubmit(() => {})}>
+              <Button type="submit" className="w-full" disabled={isPending} onClick={form.handleSubmit(onSubmit)}>
                 Create an account
               </Button>
               <Button variant="outline" className="w-full">

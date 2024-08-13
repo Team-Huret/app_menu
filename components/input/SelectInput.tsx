@@ -23,7 +23,7 @@ export default function SelectInput({ value, setValue, data }: { value: string; 
               setValue(item);
               setOpen(false);
             }}
-            className="px-1.5 py-1.5 hover:bg-gray-100 cursor-pointer rounded-lg flex items-center justify-start text-sm"
+            className="px-1.5 py-1.5 hover:bg-gray-50 cursor-pointer rounded-lg flex items-center justify-start text-sm transition"
           >
             <Check className={`mr-2 size-4 ${value === item ? "opacity-100" : "opacity-0"}`} />
             {item}
