@@ -9,7 +9,6 @@ import { MdOutlineDiscount } from "react-icons/md";
 import { IoSettingsOutline } from "react-icons/io5";
 import { TbLogout } from "react-icons/tb";
 
-import { logout } from "@/server/actions/auth";
 import Link from "next/link";
 
 export default function SideBar() {
@@ -46,7 +45,7 @@ export default function SideBar() {
             </span>
           </div>
 
-          <div className="block px-4 py-2 hover:bg-gray-100 rounded-lg cursor-pointer" onClick={() => logout()}>
+          <div className="block px-4 py-2 hover:bg-gray-100 rounded-lg cursor-pointer">
             <span className="flex items-center gap-x-2 font-medium">
               <TbLogout className="size-5" /> Logout
             </span>

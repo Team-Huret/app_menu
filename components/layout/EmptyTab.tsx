@@ -1,4 +1,4 @@
-import AddButton from "@/assets/global/AddButton";
+import AddButton from "@/components/global/AddButton";
 
 export default function EmptyTab({ text, buttonText }: { text: string; buttonText: string }) {
   return (

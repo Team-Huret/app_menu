@@ -1,37 +1,17 @@
 "use client";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { BusinessSchema } from "@/data/schemas/businessInfos";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import SelectInput from "@/components/input/SelectInput";
-import { currencies, businessTypes } from "@/data/static/settings";
+import { businessTypes } from "@/data/static/settings";
 import { useState } from "react";
 import { BiImageAdd } from "react-icons/bi";
-import SelectInputWithSearchBar from "../../input/SelectInputWithSearchBar";
-import { countries } from "@/data/static/settings";
 import { Button } from "../../ui/button";
 
 export default function InformationsBlock() {
-  const [currencyValue, setCurrencyValue] = useState("");
   const [businessTypeValue, setBusinessTypeValue] = useState("");
-  const [countryValue, setCountryValue] = useState("");
-  const form = useForm<z.infer<typeof BusinessSchema>>({
-    resolver: zodResolver(BusinessSchema),
-    defaultValues: {
-      name: "",
-      description: "",
-      country: "",
-      city: "",
-      postCode: 0,
-      street: "",
-      district: "",
-    },
-  });
+
   return (
     <Card>
       <CardHeader>
@@ -47,75 +27,50 @@ export default function InformationsBlock() {
         </div>
       </CardHeader>
       <CardContent>
-        <Form {...form}>
-          <div className="flex gap-7">
-            <div className="w-full space-y-5">
-              <div className="space-y-1">
+        <div className="flex gap-7">
+          <div className="w-full space-y-5">
+            <div className="flex gap-5 w-full">
+              <div className="w-full space-y-1">
                 <Label>Name</Label>
                 <Input placeholder="My business" required />
               </div>
-              <div className="space-y-1">
-                <Label>Introduction</Label>
-                <Textarea placeholder="My business" required />
-              </div>
-              <div className="flex gap-5 w-full">
-                <div className="w-full space-y-1">
-                  <p className="text-black font-medium">Currency</p>
-                  <SelectInput value={currencyValue} setValue={setCurrencyValue} data={currencies} />
-                </div>
-                <div className="w-full space-y-1">
-                  <p className="text-black font-medium">Business type</p>
-                  <SelectInput value={businessTypeValue} setValue={setBusinessTypeValue} data={businessTypes} />
-                </div>
+              <div className="w-full space-y-1">
+                <Label>Business Type</Label>
+                <SelectInput value={businessTypeValue} setValue={setBusinessTypeValue} data={businessTypes} />
               </div>
             </div>
-            <div className="w-full space-y-5">
-              <div className="space-y-1">
-                <Label>Country</Label>
-                <SelectInputWithSearchBar value={countryValue} setValue={setCountryValue} data={countries} />
-              </div>
-              <div className="flex gap-5 w-full">
-                <div className="w-full space-y-1">
-                  <p className="text-black font-medium">City</p>
-                  <Input placeholder="Phuket" required />
-                </div>
-                <div className="w-full space-y-1">
-                  <p className="text-black font-medium">Post Code</p>
-                  <Input placeholder="83000" required />
-                </div>
-              </div>
-              <div className="flex gap-5 w-full">
-                <div className="w-full space-y-1">
-                  <p className="text-black font-medium">Street & Number</p>
-                  <Input placeholder="14/2 Patak Rd, Karon" required />
-                </div>
-                <div className="w-full space-y-1">
-                  <p className="text-black font-medium">District</p>
-                  <Input placeholder="Karon" required />
-                </div>
-              </div>
-              <div className="flex justify-end">
-                <Button>Save</Button>
-              </div>
+            <div className="space-y-1">
+              <Label>Introduction</Label>
+              <Textarea placeholder="My business" required />
             </div>
           </div>
-        </Form>
+          <div className="w-full space-y-5">
+            <div className="flex gap-5 w-full">
+              <div className="w-full space-y-1">
+                <p className="text-black font-medium">City</p>
+                <Input placeholder="Phuket" required />
+              </div>
+              <div className="w-full space-y-1">
+                <p className="text-black font-medium">Post Code</p>
+                <Input placeholder="83000" required />
+              </div>
+            </div>
+            <div className="flex gap-5 w-full">
+              <div className="w-full space-y-1">
+                <p className="text-black font-medium">Street & Number</p>
+                <Input placeholder="14/2 Patak Rd, Karon" required />
+              </div>
+              <div className="w-full space-y-1">
+                <p className="text-black font-medium">District</p>
+                <Input placeholder="Karon" required />
+              </div>
+            </div>
+            <div className="flex justify-end">
+              <Button>Save</Button>
+            </div>
+          </div>
+        </div>
       </CardContent>
     </Card>
   );
-}
-
-{
-  /*<FormField
-  control={form.control}
-  name="name"
-  render={() => (
-    <FormItem>
-      <FormLabel />
-      <FormControl></FormControl>
-      <FormDescription />
-      <FormMessage />
-    </FormItem>
-  )}
-/>  */
 }

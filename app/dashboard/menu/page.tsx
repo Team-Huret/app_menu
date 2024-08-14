@@ -1,5 +1,8 @@
 import EmptyTab from "@/components/layout/EmptyTab";
 import MenuSideBar from "@/components/tabs/menu/MenuSideBar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Input } from "@/components/ui/input";
+import { IoIosAdd } from "react-icons/io";
 
 export default function Menu() {
   return (

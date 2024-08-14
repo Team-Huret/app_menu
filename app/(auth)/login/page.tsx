@@ -1,37 +1,52 @@
 "use client";
 import Link from "next/link";
-import { useState, useTransition } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { LoginSchema } from "@/data/schemas/auth";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import AuthError from "@/components/auth/AuthError";
-import AuthSuccess from "@/components/auth/AuthSuccess";
-import { login } from "@/server/actions/auth";
+import { Label } from "@/components/ui/label";
+import { useRouter } from "next/navigation";
+import { logInWithEmail } from "@/firebase/auth/logInWithEmail";
+import { useState } from "react";
+import { logInWithGoogle } from "@/firebase/auth/logInWithGoogle";
+import ErrorMessage from "@/components/auth/ErrorMessage";
+import SuccessMessage from "@/components/auth/SuccessMessage";
+import { useLoader } from "@/lib/functions/useLoader";
 
 export default function Login() {
-  const [error, setError] = useState<string | undefined>("");
-  const [succes, setSucces] = useState<string | undefined>("");
-  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
+  const { isLoading, execute } = useLoader();
 
-  const form = useForm<z.infer<typeof LoginSchema>>({
-    resolver: zodResolver(LoginSchema),
-    defaultValues: {
-      email: "",
-      password: "",
-    },
-  });
-  const onSubmit = (values: z.infer<typeof LoginSchema>) => {
-    setError("");
-    setSucces("");
-    startTransition(() => {
-      login(values).then((data) => {
-        setError(data?.error);
-      });
+  const [password, setPassword] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [error, setError] = useState<string>("");
+  const [success, setSuccess] = useState<string>("");
+
+  const handleLoginEmail = () => {
+    if (password === "" || email === "") {
+      setError("Please fill in all fields");
+      return;
+    }
+    execute(() => {
+      const req = logInWithEmail(email, password);
+      return req
+        .then((data) => {
+          if (data.success) {
+            router.push("/dashboard");
+          }
+        })
+        .catch((error) => setError(error.message));
+    });
+  };
+  const handleLoginGoogle = () => {
+    execute(() => {
+      const req = logInWithGoogle();
+      return req
+        .then((data) => {
+          if (data.success) {
+            router.push("/dashboard");
+          }
+        })
+        .catch((error) => setError(error.message));
     });
   };
   return (
@@ -42,59 +57,35 @@ export default function Login() {
           <CardDescription>Enter your email below to login to your account</CardDescription>
         </CardHeader>
         <CardContent>
-          <Form {...form}>
-            <div className="grid gap-4">
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }: any) => (
-                  <div className="grid gap-2">
-                    <FormItem>
-                      <FormLabel>Email</FormLabel>
-                      <FormControl>
-                        <Input {...field} placeholder="m@example.com" type="email" disabled={isPending} required />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  </div>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }: any) => (
-                  <div className="grid gap-2">
-                    <FormItem>
-                      <div className="flex items-center">
-                        <FormLabel>Password</FormLabel>
-                        <Link href="#" className="ml-auto inline-block text-sm underline">
-                          Forgot your password?
-                        </Link>
-                      </div>
-                      <FormControl>
-                        <Input {...field} placeholder="******" type="password" disabled={isPending} required />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  </div>
-                )}
-              />
-              <AuthError message={error} />
-              <AuthSuccess message={succes} />
-              <Button type="submit" className="w-full" disabled={isPending} onClick={form.handleSubmit(onSubmit)}>
-                Login
-              </Button>
-              <Button variant="outline" className="w-full">
-                Login with Google
-              </Button>
+          <div className="grid gap-4">
+            <div className="grid gap-2">
+              <Label htmlFor="email">Email</Label>
+              <Input id="email" type="email" placeholder="m@example.com" required onChange={(e) => setEmail(e.target.value)} disabled={isLoading} />
             </div>
-            <div className="mt-4 text-center text-sm">
-              Don&apos;t have an account?{" "}
-              <Link href="/register" className="underline">
-                Sign up
-              </Link>
+            <div className="grid gap-2">
+              <div className="flex items-center">
+                <Label htmlFor="password">Password</Label>
+                <Link href="#" className="ml-auto inline-block text-sm underline">
+                  Forgot your password?
+                </Link>
+              </div>
+              <Input id="password" type="password" required onChange={(e) => setPassword(e.target.value)} disabled={isLoading} />
             </div>
-          </Form>
+            <SuccessMessage message={success} />
+            <ErrorMessage message={error} />
+            <Button type="submit" className="w-full" onClick={handleLoginEmail} disabled={isLoading}>
+              Login
+            </Button>
+            <Button variant="outline" className="w-full" onClick={handleLoginGoogle} disabled={isLoading}>
+              Login with Google
+            </Button>
+          </div>
+          <div className="mt-4 text-center text-sm">
+            Don&apos;t have an account?{" "}
+            <Link href="/signup" className="underline">
+              Sign up
+            </Link>
+          </div>
         </CardContent>
       </Card>
     </div>
