@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import SelectInput from "@/components/input/SelectInput";
+import SelectInput from "@/components/global/SelectInput";
 import { businessTypes } from "@/data/static/settings";
 import { useState } from "react";
 import { BiImageAdd } from "react-icons/bi";

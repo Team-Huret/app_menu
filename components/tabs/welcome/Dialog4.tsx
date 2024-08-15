@@ -3,11 +3,11 @@ import { AlertDialogDescription, AlertDialogHeader, AlertDialogTitle } from "@/c
 import { Progress } from "@/components/ui/progress";
 import { useEffect } from "react";
 import { globalStore } from "@/data/global_state/globalStore";
-import { addCollectionDoc } from "@/firebase/database/addCollectionDocs";
+import { addCollectionDoc } from "@/firebase/database/addCollectionDoc";
 import { useState } from "react";
 
 export default function Dialog4() {
-  const { businessName, businessTypeValue, featureList, userId } = globalStore();
+  const { businessName, businessTypeValue, featureList, userDoc } = globalStore();
   const [created, setCreated] = useState(false);
   useEffect(() => {
     const createBusiness = async () => {
@@ -15,7 +15,7 @@ export default function Dialog4() {
         name: businessName,
         type: businessTypeValue,
         features: featureList,
-        ownerId: userId,
+        ownerId: userDoc?.uid,
       };
       const res = await addCollectionDoc("business", data);
       if (res) setCreated(true);

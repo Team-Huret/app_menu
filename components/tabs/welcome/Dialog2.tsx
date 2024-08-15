@@ -3,7 +3,7 @@ import { AlertDialogDescription, AlertDialogHeader, AlertDialogTitle, AlertDialo
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { businessTypes } from "@/data/static/settings";
-import SelectInput from "@/components/input/SelectInput";
+import SelectInput from "@/components/global/SelectInput";
 import { globalStore } from "@/data/global_state/globalStore";
 import { useState } from "react";
 

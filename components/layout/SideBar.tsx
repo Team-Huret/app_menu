@@ -8,10 +8,13 @@ import { BiParty } from "react-icons/bi";
 import { MdOutlineDiscount } from "react-icons/md";
 import { IoSettingsOutline } from "react-icons/io5";
 import { TbLogout } from "react-icons/tb";
+import { logOut } from "@/firebase/auth/logOut";
+import { useRouter } from "next/navigation";
 
 import Link from "next/link";
 
 export default function SideBar() {
+  const router = useRouter();
   const navLinks = [
     { name: "Dashboard", icon: <RxDashboard className="size-5" />, href: "/dashboard" },
     { name: "My Business", icon: <GoHome className="size-5" />, href: "/dashboard/my-business" },
@@ -21,6 +24,9 @@ export default function SideBar() {
     { name: "Discounts", icon: <MdOutlineDiscount className="size-5" />, href: "/dashboard/discounts" },
     { name: "Analytics", icon: <IoAnalytics className="size-5" />, href: "/dashboard/analytics" },
   ];
+  const handleLogOut = () => {
+    logOut().then(() => router.push("/login"));
+  };
   return (
     <div className="sticky top-0 z-10 h-screen bottom-0 left-0 flex">
       <div className="w-56 border-r border-gray-300 bg-white h-full flex flex-col justify-between">
@@ -45,7 +51,7 @@ export default function SideBar() {
             </span>
           </div>
 
-          <div className="block px-4 py-2 hover:bg-gray-100 rounded-lg cursor-pointer">
+          <div className="block px-4 py-2 hover:bg-gray-100 rounded-lg cursor-pointer" onClick={handleLogOut}>
             <span className="flex items-center gap-x-2 font-medium">
               <TbLogout className="size-5" /> Logout
             </span>

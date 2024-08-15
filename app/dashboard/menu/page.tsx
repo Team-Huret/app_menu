@@ -1,14 +1,12 @@
-import EmptyTab from "@/components/layout/EmptyTab";
-import MenuSideBar from "@/components/tabs/menu/MenuSideBar";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Input } from "@/components/ui/input";
-import { IoIosAdd } from "react-icons/io";
+import MenuSideBar from "@/app/dashboard/menu/_components/MenuSideBar";
 
 export default function Menu() {
   return (
     <div className="flex">
       <MenuSideBar />
-      <EmptyTab text="Nothing here yet, you can start by creating your first category here." buttonText="Add new category" />
+      <div className="w-full flex justify-center items-center">
+        <p className="text-base">Nothing here yet, you can start by creating your first category in the side bar.</p>
+      </div>
     </div>
   );
 }
