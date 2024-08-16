@@ -1,6 +1,6 @@
 "use client";
 import Category from "@/app/dashboard/menu/_components/Category";
-import AddButton from "@/components/global/AddButton";
+import DashedButton from "@/components/global/DashedButton";
 import { useState } from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { MdAdd } from "react-icons/md";
@@ -10,6 +10,7 @@ import { postCategory } from "@/app/dashboard/menu/_data/postCategory";
 import { DndContext } from "@dnd-kit/core";
 import { arrayMove, SortableContext } from "@dnd-kit/sortable";
 import { DragOverEvent } from "@dnd-kit/core";
+import { HiOutlineFolderPlus } from "react-icons/hi2";
 
 export default function MenuSideBar() {
   const [categoryName, setCategoryName] = useState("");
@@ -43,7 +44,7 @@ export default function MenuSideBar() {
         <DndContext onDragOver={handleDragOver} onDragEnd={handleDragEnd}>
           <SortableContext items={categories}>
             {categories.length > 0 ? (
-              categories.map((category: any, index: number) => <Category key={index} name={category} />)
+              categories.map((category: string, index: number) => <Category key={index} name={category} />)
             ) : (
               <p className="px-3 text-sm">No categories</p>
             )}
@@ -52,8 +53,10 @@ export default function MenuSideBar() {
       </div>
       <div className="w-[88%] h-[1px] bg-gray-300 rounded-full mx-auto my-5"></div>
       <Popover>
-        <PopoverTrigger>
-          <AddButton className="w-full">Add new category</AddButton>
+        <PopoverTrigger className="w-full">
+          <DashedButton className="w-full" icon={<HiOutlineFolderPlus />}>
+            Add new category
+          </DashedButton>
         </PopoverTrigger>
         <PopoverContent>
           <form onSubmit={handleAddCategory} className="flex items-center gap-x-2">

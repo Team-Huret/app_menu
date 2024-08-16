@@ -9,8 +9,8 @@ import { useState } from "react";
 import { signUpWithEmail } from "@/firebase/auth/signUpWithEmail";
 import { verifyPassword } from "@/lib/functions/stringFunctions";
 import { useRouter } from "next/navigation";
-import ErrorMessage from "@/components/auth/ErrorMessage";
-import SuccessMessage from "@/components/auth/SuccessMessage";
+import ErrorMessage from "@/app/(auth)/_components/ErrorMessage";
+import SuccessMessage from "@/app/(auth)/_components/SuccessMessage";
 import { isStringContainsOnlyLetters } from "@/lib/functions/stringFunctions";
 import { useLoader } from "@/lib/functions/useLoader";
 

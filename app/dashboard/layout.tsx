@@ -32,7 +32,6 @@ export default function Layout({
           if (!querySnapshot.empty) {
             const businessDoc = querySnapshot.docs[0].data();
             setBusinessDoc(businessDoc as BusinessDoc);
-            console.log(businessDoc);
           } else {
             console.log("No business found for this user.");
           }

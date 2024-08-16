@@ -8,8 +8,7 @@ import { useRouter } from "next/navigation";
 import { logInWithEmail } from "@/firebase/auth/logInWithEmail";
 import { useState } from "react";
 import { logInWithGoogle } from "@/firebase/auth/logInWithGoogle";
-import ErrorMessage from "@/components/auth/ErrorMessage";
-import SuccessMessage from "@/components/auth/SuccessMessage";
+import ErrorMessage from "@/app/(auth)/_components/ErrorMessage";
 import { useLoader } from "@/lib/functions/useLoader";
 
 export default function Login() {
@@ -19,7 +18,6 @@ export default function Login() {
   const [password, setPassword] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [error, setError] = useState<string>("");
-  const [success, setSuccess] = useState<string>("");
 
   const handleLoginEmail = () => {
     if (password === "" || email === "") {
@@ -71,7 +69,6 @@ export default function Login() {
               </div>
               <Input id="password" type="password" required onChange={(e) => setPassword(e.target.value)} disabled={isLoading} />
             </div>
-            <SuccessMessage message={success} />
             <ErrorMessage message={error} />
             <Button type="submit" className="w-full" onClick={handleLoginEmail} disabled={isLoading}>
               Login

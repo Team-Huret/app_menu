@@ -2,21 +2,19 @@ import { useEffect } from "react";
 import { db } from "@/firebase/config";
 import { collection, onSnapshot, updateDoc, doc } from "firebase/firestore";
 import { useState } from "react";
-
-interface Category {
-  id: string;
-  order: number;
-}
+import { useMenuStore } from "@/app/dashboard/menu/_data/useMenuStore";
 
 export const useGetCategories = () => {
+  const { setCategoriesList } = useMenuStore();
   const [categories, setCategories] = useState<string[]>([]);
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, "business", "PEG8sjvy5RX742ZKyx2G", "menu"), (snapshot) => {
-      const docsList: Category[] = [];
+      const docsData: any[] = [];
       snapshot.forEach((doc) => {
-        const data = doc.data();
-        docsList.push({ id: doc.id, order: data.order });
+        docsData.push({ id: doc.id, ...doc.data() });
       });
+      setCategoriesList(docsData);
+      const docsList = docsData.map((doc) => ({ id: doc.id, order: doc.order }));
       docsList.sort((a, b) => a.order - b.order);
       setCategories(docsList.map((doc) => doc.id));
     });

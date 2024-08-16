@@ -5,13 +5,26 @@ import { Button } from "@/components/ui/button";
 import { ChevronsUpDown } from "lucide-react";
 import { useState } from "react";
 
-export default function SelectInput({ value, setValue, data }: { value: string; setValue: (item: string) => void; data: string[] }) {
+export default function SelectInput({
+  value,
+  setValue,
+  data,
+  icon,
+}: {
+  value: string;
+  setValue: (item: string) => void;
+  data: string[];
+  icon?: React.ReactNode;
+}) {
   const [open, setOpen] = useState(false);
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button variant="outline" className="w-full justify-between text-muted-foreground font-normal">
-          {value ? value : "Select..."}
+          <span className="flex items-center gap-x-2">
+            {icon}
+            {value ? value : "Select..."}
+          </span>
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
