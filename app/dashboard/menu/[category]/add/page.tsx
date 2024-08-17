@@ -43,9 +43,9 @@ export default function Add() {
         </div>
         <div className="flex gap-8 ">
           <div className="basis-1/2 space-y-5">
-            <PriceOption role="base" state={entryPrice} setState={setEntryPrice} />
+            <PriceOption role="base" state={entryPrice} setState={setEntryPrice} name="Regular price" />
             {entryOptions.map((option, index) => (
-              <PriceOption key={index} role="option" state={option.price} />
+              <PriceOption key={index} role="option" state={option.price} name={option.name} />
             ))}
             <AddOptionButton />
           </div>

@@ -6,12 +6,13 @@ interface PriceOptionProps {
   state: number;
   setState?: (value: number) => void;
   role: "base" | "option";
+  name: string;
 }
 
-export default function PriceOption({ state, setState, role }: PriceOptionProps) {
+export default function PriceOption({ state, setState, role, name }: PriceOptionProps) {
   return (
     <div className="w-full space-y-1">
-      <Label>Regular price</Label>
+      <Label>{name}</Label>
       <div className="relative">
         {role === "base" ? (
           <Input placeholder="550" type="number" onChange={(e) => (setState ? setState(Number(e.target.value)) : null)} value={state} required />
