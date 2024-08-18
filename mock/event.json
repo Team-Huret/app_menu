@@ -1,0 +1,52 @@
+{
+  "event": [
+    {
+      "id": "ZFVE8j2y5RX742ZKyx2G3",
+      "name": "Mustache Takeover",
+      "description": "This is a description of the event",
+      "start_date": "2023-05-01",
+      "end_date": "2023-05-02",
+      "start_time": "10:00",
+      "end_time": "11:00",
+      "location": "The office",
+      "entry_fee": 300,
+      "image": "https://phuket.cafedelmar.com/wp-content/uploads/2024/06/SQ-size_MUTACHE-01_11zon.jpg"
+    },
+    {
+      "id": "A1B2C3D4E5F6G7H8I9J0",
+      "name": "Coffee Lovers Meetup",
+      "description": "A gathering for coffee enthusiasts.",
+      "start_date": "2023-06-15",
+      "end_date": "2023-06-15",
+      "start_time": "09:00",
+      "end_time": "12:00",
+      "location": "Downtown Cafe",
+      "entry_fee": 150,
+      "image": "https://example.com/images/coffee_meetup.jpg"
+    },
+    {
+      "id": "K1L2M3N4O5P6Q7R8S9T0",
+      "name": "Tech Conference 2023",
+      "description": "Annual technology conference.",
+      "start_date": "2023-07-20",
+      "end_date": "2023-07-22",
+      "start_time": "08:00",
+      "end_time": "17:00",
+      "location": "Convention Center",
+      "entry_fee": 500,
+      "image": "https://example.com/images/tech_conference.jpg"
+    },
+    {
+      "id": "U1V2W3X4Y5Z6A7B8C9D0",
+      "name": "Art Exhibition",
+      "description": "Exhibition of modern art.",
+      "start_date": "2023-08-10",
+      "end_date": "2023-08-12",
+      "start_time": "10:00",
+      "end_time": "18:00",
+      "location": "Art Gallery",
+      "entry_fee": 200,
+      "image": "https://example.com/images/art_exhibition.jpg"
+    }
+  ]
+}

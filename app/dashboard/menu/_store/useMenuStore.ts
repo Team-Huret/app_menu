@@ -1,9 +1,14 @@
 import { create } from "zustand";
+import { Category } from "@/types/menu";
+import { SetStateAction } from "react";
 
 // Define the shape of the store
 interface UseMenuStore {
-  categoriesList: any[] | [];
-  setCategoriesList: (value: any[]) => void;
+  categories: Category[] | [];
+  setCategories: (value: Category[]) => void;
+
+  categoriesName: string[] | [];
+  setCategoriesName: (value: SetStateAction<string[]>) => void;
 
   entryName: string;
   setEntryName: (value: string) => void;
@@ -33,8 +38,14 @@ interface entryOption {
 
 // Create the zustand store
 export const useMenuStore = create<UseMenuStore>((set) => ({
-  categoriesList: [],
-  setCategoriesList: (value) => set({ categoriesList: value }),
+  categories: [],
+  setCategories: (value) => set({ categories: value }),
+
+  categoriesName: [],
+  setCategoriesName: (value: SetStateAction<string[]>) =>
+    set((state) => ({
+      categoriesName: typeof value === "function" ? value(state.categoriesName) : value,
+    })),
 
   entryName: "",
   setEntryName: (value) => set({ entryName: value }),

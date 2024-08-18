@@ -1,0 +1,121 @@
+{
+  "menu": [
+    {
+      "name": "Food test",
+      "order": 1,
+      "data": [
+        {
+          "id": "ZFVE8j2y5RX742ZKyx2G3",
+          "order": 3,
+          "name": "Tacos",
+          "data": [
+            {
+              "id": "ZFVE8j2y5RX742ZKyx2G4",
+              "order": 1,
+              "type": "entry",
+              "name": "Chicken tacos",
+              "price": 300
+            },
+            {
+              "id": "ZFVE8j2y5RX742ZKyx2G5",
+              "order": 2,
+              "type": "entry",
+              "name": "Beef tacos",
+              "price": 400
+            }
+          ]
+        },
+        {
+          "id": "ZFVE8j2y5RX742ZKyx2G3",
+          "order": 3,
+          "name": "Burrito",
+          "data": [
+            {
+              "id": "ZFVE8j2y5RX742ZKyx2G4",
+              "order": 1,
+              "type": "entry",
+              "name": "Chicken burrito",
+              "price": 300
+            },
+            {
+              "id": "ZFVE8j2y5RX742ZKyx2G5",
+              "order": 2,
+              "type": "entry",
+              "name": "Beef burrito",
+              "price": 400
+            }
+          ]
+        },
+        {
+          "id": "ZFVE8j2y5RX742ZKyx2G3",
+          "order": 3,
+          "name": "Nachos",
+          "data": [
+            {
+              "id": "ZFVE8j2y5RX742ZKyx2G4",
+              "order": 1,
+              "type": "entry",
+              "name": "Chicken burrito",
+              "price": 300
+            },
+            {
+              "id": "ZFVE8j2y5RX742ZKyx2G5",
+              "order": 2,
+              "type": "entry",
+              "name": "Beef burrito",
+              "price": 400
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Drinks",
+      "order": 2,
+      "data": [
+        {
+          "id": "ZFVE8j2y5RX742ZKyx2G9",
+          "order": 3,
+          "name": "Cocktails",
+          "data": [
+            {
+              "id": "ZFVE8j2y5RX742ZKyx2GA",
+              "order": 1,
+              "type": "entry",
+              "name": "Margarita",
+              "price": 300
+            },
+            {
+              "id": "ZFVE8j2y5RX742ZKyx2GB",
+              "order": 2,
+              "type": "entry",
+              "name": "Sangria",
+              "price": 400
+            }
+          ]
+        },
+        {
+          "id": "ZFVE8j2y5RX742ZKyx2G9",
+          "order": 3,
+          "name": "Hot drinks",
+          "data": [
+            {
+              "id": "ZFVE8j2y5RX742ZKyx2GA",
+              "order": 1,
+              "type": "entry",
+              "name": "Expresso",
+              "price": 300
+            },
+            {
+              "id": "ZFVE8j2y5RX742ZKyx2GB",
+              "order": 2,
+              "type": "entry",
+              "name": "Cappuccino",
+              "price": 400
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

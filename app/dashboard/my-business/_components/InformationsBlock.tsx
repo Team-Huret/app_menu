@@ -4,10 +4,10 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import SelectInput from "@/components/global/SelectInput";
-import { businessTypes } from "@/data/static/settings";
+import { businessTypes } from "@/data/settings";
 import { useState } from "react";
 import { BiImageAdd } from "react-icons/bi";
-import { Button } from "../../ui/button";
+import { Button } from "@/components/ui/button";
 
 export default function InformationsBlock() {
   const [businessTypeValue, setBusinessTypeValue] = useState("");

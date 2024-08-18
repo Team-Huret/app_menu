@@ -6,7 +6,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { MdAdd } from "react-icons/md";
 import { Input } from "@/components/ui/input";
 import { useGetCategories } from "@/app/dashboard/menu/_data/getCategories";
-import { postCategory } from "@/app/dashboard/menu/_data/postCategory";
+import { addCategory } from "@/app/dashboard/menu/_data/addCategory";
 import { DndContext } from "@dnd-kit/core";
 import { arrayMove, SortableContext } from "@dnd-kit/sortable";
 import { DragOverEvent } from "@dnd-kit/core";
@@ -14,19 +14,20 @@ import { HiOutlineFolderPlus } from "react-icons/hi2";
 
 export default function MenuSideBar() {
   const [categoryName, setCategoryName] = useState("");
-  const { categories, setCategories, updateOrder } = useGetCategories();
+  const { categoriesName, setCategoriesName, updateOrder } = useGetCategories();
 
   const handleAddCategory = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (categoryName) {
-      postCategory(categoryName);
+      setCategoriesName([...categoriesName, categoryName]);
+      addCategory(categoryName);
       setCategoryName("");
     }
   };
   const handleDragOver = (event: DragOverEvent) => {
     const { active, over } = event;
     if (over && active.id !== over.id) {
-      setCategories((prev) => {
+      setCategoriesName((prev) => {
         const oldIndex = prev.findIndex((item) => item === active.id);
         const newIndex = prev.findIndex((item) => item === over.id);
         return arrayMove(prev, oldIndex, newIndex);
@@ -38,13 +39,13 @@ export default function MenuSideBar() {
   };
 
   return (
-    <div className="w-56 border-r border-gray-300 bg-white pt-5 px-2" style={{ height: "calc(100vh - 70px)" }}>
+    <div className="w-56 border-r border-gray-300 bg-white pt-5 px-2 sticky top-0 bottom-0 le" style={{ height: "calc(100vh - 70px)" }}>
       <h3 className="mb-3 ml-2">Categories</h3>
       <div>
         <DndContext onDragOver={handleDragOver} onDragEnd={handleDragEnd}>
-          <SortableContext items={categories}>
-            {categories.length > 0 ? (
-              categories.map((category: string, index: number) => <Category key={index} name={category} />)
+          <SortableContext items={categoriesName}>
+            {categoriesName.length > 0 ? (
+              categoriesName.map((category: string, index: number) => <Category key={index} name={category} />)
             ) : (
               <p className="px-3 text-sm">No categories</p>
             )}

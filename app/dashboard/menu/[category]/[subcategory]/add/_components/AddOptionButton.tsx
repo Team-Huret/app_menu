@@ -6,7 +6,7 @@ import DashedButton from "@/components/global/DashedButton";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
-import { useMenuStore } from "@/app/dashboard/menu/_data/useMenuStore";
+import { useMenuStore } from "@/app/dashboard/menu/_store/useMenuStore";
 
 export default function AddOptionButton() {
   const [optionName, setOptionName] = useState("");
@@ -26,7 +26,9 @@ export default function AddOptionButton() {
   return (
     <Popover>
       <PopoverTrigger className="w-full">
-        <DashedButton icon={<HiOutlineFolderPlus />}>Add an option</DashedButton>
+        <DashedButton className="w-full" icon={<HiOutlineFolderPlus />}>
+          Add an option
+        </DashedButton>
       </PopoverTrigger>
       <PopoverContent>
         <div className="flex flex-col gap-4">

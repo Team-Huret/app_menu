@@ -9,7 +9,7 @@ import { logInWithEmail } from "@/firebase/auth/logInWithEmail";
 import { useState } from "react";
 import { logInWithGoogle } from "@/firebase/auth/logInWithGoogle";
 import ErrorMessage from "@/app/(auth)/_components/ErrorMessage";
-import { useLoader } from "@/lib/functions/useLoader";
+import { useLoader } from "@/lib/hooks/useLoader";
 
 export default function Login() {
   const router = useRouter();

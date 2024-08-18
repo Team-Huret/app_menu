@@ -1,4 +1,4 @@
-import Welcome from "@/components/tabs/welcome/Welcome";
+import Welcome from "@/app/dashboard/onboarding/_components/Welcome";
 export default function Page() {
   return (
     <div>

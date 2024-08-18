@@ -7,7 +7,7 @@ import { HiOutlineFolderPlus } from "react-icons/hi2";
 export default function EmptyFields() {
   return (
     <div className="w-full flex flex-col justify-center items-center">
-      <p className="text-base mb-3">Nothing here yet, you can start by creating your first entry or subcategory.</p>
+      <p className="text-base mb-3">Nothing here yet, you can start by creating your first subcategory.</p>
       <div className="w-full flex justify-center items-center max-w-[60%] gap-3">
         <Popover>
           <PopoverTrigger asChild>
@@ -24,9 +24,6 @@ export default function EmptyFields() {
             </form>
           </PopoverContent>
         </Popover>
-        <DashedButton className="w-full" icon={<HiOutlineFolderPlus />}>
-          Add an entry
-        </DashedButton>
       </div>
     </div>
   );

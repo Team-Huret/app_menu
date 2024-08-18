@@ -6,7 +6,7 @@ export default function MenuLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex">
+    <div className="flex relative">
       <MenuSideBar />
       {children}
     </div>

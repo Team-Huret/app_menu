@@ -7,12 +7,12 @@ import { Label } from "@/components/ui/label";
 import { logInWithGoogle } from "@/firebase/auth/logInWithGoogle";
 import { useState } from "react";
 import { signUpWithEmail } from "@/firebase/auth/signUpWithEmail";
-import { verifyPassword } from "@/lib/functions/stringFunctions";
+import { verifyPassword } from "@/lib/functions/string";
 import { useRouter } from "next/navigation";
 import ErrorMessage from "@/app/(auth)/_components/ErrorMessage";
 import SuccessMessage from "@/app/(auth)/_components/SuccessMessage";
-import { isStringContainsOnlyLetters } from "@/lib/functions/stringFunctions";
-import { useLoader } from "@/lib/functions/useLoader";
+import { isStringContainsOnlyLetters } from "@/lib/functions/string";
+import { useLoader } from "@/lib/hooks/useLoader";
 
 export default function Signup() {
   const router = useRouter();
