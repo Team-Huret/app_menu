@@ -7,7 +7,7 @@ export default function EventLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div>
+    <div className="flex flex-col">
       <TopBar />
       {children}
     </div>

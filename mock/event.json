@@ -22,7 +22,7 @@
       "end_time": "12:00",
       "location": "Downtown Cafe",
       "entry_fee": 150,
-      "image": "https://example.com/images/coffee_meetup.jpg"
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5XFYoNJ_kc9L3nGQO-xzTtZW7Vcdqn7GkzGUGgvLVYlQA-mInl_UomKn1YdtRX9fX-b8&usqp=CAU"
     },
     {
       "id": "K1L2M3N4O5P6Q7R8S9T0",
@@ -34,7 +34,7 @@
       "end_time": "17:00",
       "location": "Convention Center",
       "entry_fee": 500,
-      "image": "https://example.com/images/tech_conference.jpg"
+      "image": "https://imgproxy.ra.co/_/quality:50/aHR0cHM6Ly9pbWFnZXMucmEuY28vYzc5OGI5OWVmMmIzMzYzOGU2YmQxY2I2OWE1ODQ3OTU5MGNlYWM3MC5qcGc="
     },
     {
       "id": "U1V2W3X4Y5Z6A7B8C9D0",
@@ -46,7 +46,7 @@
       "end_time": "18:00",
       "location": "Art Gallery",
       "entry_fee": 200,
-      "image": "https://example.com/images/art_exhibition.jpg"
+      "image": "https://cdn.phuket.net/bucket/mainsite/size/365/225/2024/08/454442111_122158860692176239_3219921849312050114_n.jpg"
     }
   ]
 }
