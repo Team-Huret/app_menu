@@ -40,7 +40,7 @@ export default function MenuSideBar() {
   };
 
   return (
-    <div className="w-56 border-r border-gray-300 bg-white pt-5 px-2 sticky top-0 bottom-0 le" style={{ height: "calc(100vh - 70px)" }}>
+    <div className="w-56 border-r border-gray-300 bg-white pt-5 px-2 sticky top-0">
       <h3 className="mb-3 ml-2">Categories</h3>
       <div>
         <DndContext onDragOver={handleDragOver} onDragEnd={handleDragEnd}>

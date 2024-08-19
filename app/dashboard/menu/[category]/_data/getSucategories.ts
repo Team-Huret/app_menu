@@ -13,9 +13,7 @@ export const useGetSubcategories = (slug: string) => {
     if (!category || !category.data) return;
     setSubCategories(category.data);
     const subcategoryName = category.data.map((field) => field.name);
-    if (subcategoryName) {
-      setSubCategoriesName(subcategoryName);
-    }
+    setSubCategoriesName(subcategoryName);
   }, [categories]);
 
   const updateOrder = () => {

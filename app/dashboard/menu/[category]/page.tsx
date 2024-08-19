@@ -9,8 +9,8 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { MdAdd } from "react-icons/md";
 import { Input } from "@/components/ui/input";
 import { HiOutlineFolderPlus } from "react-icons/hi2";
-import DashedButton from "@/components/global/DashedButton";
 import EmptyFields from "./_components/EmptyFields";
+import { Button } from "@/components/ui/button";
 
 export default function Category() {
   const pathname = usePathname();
@@ -33,6 +33,7 @@ export default function Category() {
       });
     }
   };
+
   const handleDragEnd = () => {
     updateOrder();
   };
@@ -46,11 +47,13 @@ export default function Category() {
           })}
         </SortableContext>
       </DndContext>
+      <div className="h-[1500px]"></div>
       <Popover>
         <PopoverTrigger>
-          <DashedButton className="w-full" icon={<HiOutlineFolderPlus />}>
+          <Button variant="dashed" className="w-full">
+            <HiOutlineFolderPlus className="size-5 mr-2" />
             Add a subcategory
-          </DashedButton>
+          </Button>
         </PopoverTrigger>
         <PopoverContent>
           <form onSubmit={() => {}} className="flex items-center gap-x-2">

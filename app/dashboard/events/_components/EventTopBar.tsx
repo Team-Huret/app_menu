@@ -1,4 +1,4 @@
-import DashedButton from "@/components/global/DashedButton";
+"use client";
 import { Button } from "@/components/ui/button";
 import React from "react";
 import { LuFilter } from "react-icons/lu";
@@ -6,12 +6,17 @@ import { HiOutlineFolderPlus } from "react-icons/hi2";
 import { LuSearch } from "react-icons/lu";
 import { Input } from "@/components/ui/input";
 import { HiOutlineChevronUpDown } from "react-icons/hi2";
+import { useRouter } from "next/navigation";
 
 export default function EventTopBar() {
+  const router = useRouter();
   return (
     <div className="flex justify-between items-center px-7 py-5 border-b border-gray-300 w-full">
       <div className="flex gap-x-4">
-        <DashedButton icon={<HiOutlineFolderPlus className="size-4 mr-1" />}>Add new Event</DashedButton>
+        <Button variant="dashed" onClick={() => router.push("/dashboard/events/add")}>
+          <HiOutlineFolderPlus className="size-4 mr-1" />
+          Add new Event
+        </Button>
         <Button variant="outline" className="justify-start border-black/90 w-[170px] hover:bg-gray-50 relative">
           <LuFilter className="size-4 mr-2" />
           Filter

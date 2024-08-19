@@ -12,30 +12,98 @@
             {
               "id": "ZFVE8j2y5RX742ZKyx2G4",
               "order": 1,
-              "type": "entry",
               "name": "Fish tacos",
-              "price": 300
+              "description": "Fish tacos",
+              "photo": "https:// ....",
+              "labels": ["vegan", "fish"],
+              "allergies": ["peanut", "tree nut"],
+              "base_price": 300,
+              "options": [
+                {
+                  "name": "Small",
+                  "price": 300
+                },
+                {
+                  "name": "Medium",
+                  "price": 400
+                },
+                {
+                  "name": "Large",
+                  "price": 500
+                }
+              ]
             },
             {
               "id": "ZFVE8j2y5RX742ZKyx2G5",
               "order": 2,
-              "type": "entry",
               "name": "Beef tacos",
-              "price": 400
+              "description": "Fish tacos",
+              "photo": "https:// ....",
+              "labels": ["vegan", "fish"],
+              "allergies": ["peanut", "tree nut"],
+              "base_price": 300,
+              "options": [
+                {
+                  "name": "Small",
+                  "price": 300
+                },
+                {
+                  "name": "Medium",
+                  "price": 400
+                },
+                {
+                  "name": "Large",
+                  "price": 500
+                }
+              ]
             },
             {
               "id": "ZFVE8j2y5RX742ZKyx2G4",
               "order": 1,
-              "type": "entry",
               "name": "Chicken tacos",
-              "price": 300
+              "description": "Fish tacos",
+              "photo": "https:// ....",
+              "labels": ["vegan", "fish"],
+              "allergies": ["peanut", "tree nut"],
+              "base_price": 300,
+              "options": [
+                {
+                  "name": "Small",
+                  "price": 300
+                },
+                {
+                  "name": "Medium",
+                  "price": 400
+                },
+                {
+                  "name": "Large",
+                  "price": 500
+                }
+              ]
             },
             {
               "id": "ZFVE8j2y5RX742ZKyx2G5",
               "order": 2,
-              "type": "entry",
               "name": "eggs tacos",
-              "price": 400
+              "description": "Fish tacos",
+              "photo": "https:// ....",
+              "labels": ["vegan", "fish"],
+              "allergies": ["peanut", "tree nut"],
+              "base_price": 300,
+              "options": [
+                {
+                  "name": "Small",
+                  "price": 300
+                },
+                {
+                  "name": "Medium",
+                  "price": 400
+                },
+                {
+                  "name": "Large",
+                  "price": 500
+                }
+              ]
             }
           ]
         },
@@ -47,16 +115,50 @@
             {
               "id": "ZFVE8j2y5RX742ZKyx2G4",
               "order": 1,
-              "type": "entry",
               "name": "Chicken burrito",
-              "price": 300
+              "description": "Fish tacos",
+              "photo": "https:// ....",
+              "labels": ["vegan", "fish"],
+              "allergies": ["peanut", "tree nut"],
+              "base_price": 300,
+              "options": [
+                {
+                  "name": "Small",
+                  "price": 300
+                },
+                {
+                  "name": "Medium",
+                  "price": 400
+                },
+                {
+                  "name": "Large",
+                  "price": 500
+                }
+              ]
             },
             {
               "id": "ZFVE8j2y5RX742ZKyx2G5",
               "order": 2,
-              "type": "entry",
               "name": "Beef burrito",
-              "price": 400
+              "description": "Fish tacos",
+              "photo": "https:// ....",
+              "labels": ["vegan", "fish"],
+              "allergies": ["peanut", "tree nut"],
+              "base_price": 300,
+              "options": [
+                {
+                  "name": "Small",
+                  "price": 300
+                },
+                {
+                  "name": "Medium",
+                  "price": 400
+                },
+                {
+                  "name": "Large",
+                  "price": 500
+                }
+              ]
             }
           ]
         },
@@ -68,14 +170,12 @@
             {
               "id": "ZFVE8j2y5RX742ZKyx2G4",
               "order": 1,
-              "type": "entry",
               "name": "Chicken burrito",
               "price": 300
             },
             {
               "id": "ZFVE8j2y5RX742ZKyx2G5",
               "order": 2,
-              "type": "entry",
               "name": "Beef burrito",
               "price": 400
             }
@@ -95,14 +195,12 @@
             {
               "id": "ZFVE8j2y5RX742ZKyx2GA",
               "order": 1,
-              "type": "entry",
               "name": "Margarita",
               "price": 300
             },
             {
               "id": "ZFVE8j2y5RX742ZKyx2GB",
               "order": 2,
-              "type": "entry",
               "name": "Sangria",
               "price": 400
             }
@@ -116,14 +214,12 @@
             {
               "id": "ZFVE8j2y5RX742ZKyx2GA",
               "order": 1,
-              "type": "entry",
               "name": "Expresso",
               "price": 300
             },
             {
               "id": "ZFVE8j2y5RX742ZKyx2GB",
               "order": 2,
-              "type": "entry",
               "name": "Cappuccino",
               "price": 400
             }

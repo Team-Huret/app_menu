@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { useState } from "react";
 import { useMenuStore } from "@/app/dashboard/menu/_store/useMenuStore";
 import categoriesMock from "@/mock/categories.json";
 import { Category } from "@/types/menu";
