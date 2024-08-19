@@ -16,13 +16,13 @@ import Link from "next/link";
 export default function SideBar() {
   const router = useRouter();
   const navLinks = [
-    { name: "Dashboard", icon: <RxDashboard className="size-5" />, href: "/dashboard" },
+    //{ name: "Dashboard", icon: <RxDashboard className="size-5" />, href: "/dashboard" },
     { name: "My Business", icon: <GoHome className="size-5" />, href: "/dashboard/my-business" },
     { name: "Menu", icon: <MdRestaurantMenu className="size-5" />, href: "/dashboard/menu" },
     { name: "Events", icon: <BiParty className="size-5" />, href: "/dashboard/events" },
-    { name: "Booking", icon: <IoIosCalendar className="size-5" />, href: "/dashboard/booking" },
-    { name: "Discounts", icon: <MdOutlineDiscount className="size-5" />, href: "/dashboard/discounts" },
-    { name: "Analytics", icon: <IoAnalytics className="size-5" />, href: "/dashboard/analytics" },
+    //{ name: "Booking", icon: <IoIosCalendar className="size-5" />, href: "/dashboard/booking" },
+    //{ name: "Discounts", icon: <MdOutlineDiscount className="size-5" />, href: "/dashboard/discounts" },
+    //{ name: "Analytics", icon: <IoAnalytics className="size-5" />, href: "/dashboard/analytics" },
   ];
   const handleLogOut = () => {
     logOut().then(() => router.push("/login"));

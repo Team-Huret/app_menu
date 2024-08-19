@@ -11,6 +11,7 @@ import { DndContext } from "@dnd-kit/core";
 import { arrayMove, SortableContext } from "@dnd-kit/sortable";
 import { DragOverEvent } from "@dnd-kit/core";
 import { HiOutlineFolderPlus } from "react-icons/hi2";
+import { Button } from "@/components/ui/button";
 
 export default function MenuSideBar() {
   const [categoryName, setCategoryName] = useState("");
@@ -55,9 +56,10 @@ export default function MenuSideBar() {
       <div className="w-[88%] h-[1px] bg-gray-300 rounded-full mx-auto my-5"></div>
       <Popover>
         <PopoverTrigger className="w-full">
-          <DashedButton className="w-full" icon={<HiOutlineFolderPlus />}>
+          <Button variant="dashed" className="w-full">
+            <HiOutlineFolderPlus className="size-5 mr-2" />
             Add new category
-          </DashedButton>
+          </Button>
         </PopoverTrigger>
         <PopoverContent>
           <form onSubmit={handleAddCategory} className="flex items-center gap-x-2">

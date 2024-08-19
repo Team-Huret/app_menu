@@ -13,7 +13,7 @@
               "id": "ZFVE8j2y5RX742ZKyx2G4",
               "order": 1,
               "type": "entry",
-              "name": "Chicken tacos",
+              "name": "Fish tacos",
               "price": 300
             },
             {
@@ -21,6 +21,20 @@
               "order": 2,
               "type": "entry",
               "name": "Beef tacos",
+              "price": 400
+            },
+            {
+              "id": "ZFVE8j2y5RX742ZKyx2G4",
+              "order": 1,
+              "type": "entry",
+              "name": "Chicken tacos",
+              "price": 300
+            },
+            {
+              "id": "ZFVE8j2y5RX742ZKyx2G5",
+              "order": 2,
+              "type": "entry",
+              "name": "eggs tacos",
               "price": 400
             }
           ]

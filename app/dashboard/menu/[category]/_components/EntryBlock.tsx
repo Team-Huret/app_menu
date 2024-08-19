@@ -1,10 +1,11 @@
-import React from "react";
+"use client";
 import { LuTrash2 } from "react-icons/lu";
 import { MdDragIndicator } from "react-icons/md";
 import { LuChefHat } from "react-icons/lu";
 import Link from "next/link";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { usePathname } from "next/navigation";
 
 type EntryBlockProps = {
   name: string;
@@ -12,9 +13,13 @@ type EntryBlockProps = {
 };
 
 export default function EntryBlock({ name, className }: EntryBlockProps) {
+  const pathname = usePathname();
+  const slug = pathname.split("/")[3];
+  const decodedSlug = decodeURIComponent(slug);
+
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: name });
   const style = {
-    transform: CSS.Transform.toString(transform),
+    transform: CSS.Translate.toString(transform),
     transition,
   };
   return (
@@ -25,7 +30,7 @@ export default function EntryBlock({ name, className }: EntryBlockProps) {
       ref={setNodeRef}
       style={style}
     >
-      <Link href={`/dashboard/menu/edit/${name}`} className="p-4 grow">
+      <Link href={`/dashboard/menu/${decodedSlug}/${name}/edit`} className="p-4 grow">
         <div className="flex items-center gap-x-2">
           <LuChefHat className="size-5 mr-2" />
           <p>{name}</p>

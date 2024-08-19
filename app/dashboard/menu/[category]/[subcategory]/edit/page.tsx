@@ -10,7 +10,7 @@ import CheckboxList from "../_components/CheckboxList";
 import PriceOption from "../_components/PriceOption";
 import InputFile from "../_components/InputFile";
 
-export default function Add() {
+export default function Edit() {
   const {
     entryName,
     setEntryName,

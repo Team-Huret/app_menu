@@ -30,7 +30,7 @@ export default function Subcategory({ entries, name }: SubcategoryProps) {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: name });
 
   const style = {
-    transform: CSS.Transform.toString(transform),
+    transform: CSS.Translate.toString(transform),
     transition,
   };
 
