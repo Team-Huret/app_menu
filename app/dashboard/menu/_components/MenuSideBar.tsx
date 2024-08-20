@@ -5,8 +5,8 @@ import { useState } from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { MdAdd } from "react-icons/md";
 import { Input } from "@/components/ui/input";
-import { useGetCategories } from "@/app/dashboard/menu/_data/getCategories";
-import { addCategory } from "@/app/dashboard/menu/_data/addCategory";
+import { useGetAllCategories } from "@/app/dashboard/menu/_data/getAllCategories";
+import { addCategory } from "@/app/dashboard/menu/_data/addEmptyCategory";
 import { DndContext } from "@dnd-kit/core";
 import { arrayMove, SortableContext } from "@dnd-kit/sortable";
 import { DragOverEvent } from "@dnd-kit/core";
@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button";
 
 export default function MenuSideBar() {
   const [categoryName, setCategoryName] = useState("");
-  const { categoriesName, setCategoriesName, updateOrder } = useGetCategories();
+  const { categoriesName, setCategoriesName, updateOrder } = useGetAllCategories();
 
   const handleAddCategory = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -40,7 +40,7 @@ export default function MenuSideBar() {
   };
 
   return (
-    <div className="w-56 border-r border-gray-300 bg-white pt-5 px-2 sticky top-0">
+    <div className="w-56 border-r border-gray-300 bg-white pt-5 px-2 sticky top-[70px]" style={{ height: "calc(100vh - 70px)" }}>
       <h3 className="mb-3 ml-2">Categories</h3>
       <div>
         <DndContext onDragOver={handleDragOver} onDragEnd={handleDragEnd}>

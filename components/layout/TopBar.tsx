@@ -6,23 +6,26 @@ import { capitalizeFirstLetter } from "@/lib/functions/string";
 
 export default function TopBar() {
   const pathname = usePathname();
-  const slug = pathname.split("/");
+  const slug = pathname.split("/").filter((item) => item !== "");
+  const decodedSlug = slug.map((item) => decodeURIComponent(item));
+  console.log(slug);
+
   return (
-    <div className="sticky top-0 z-10 w-full flex justify-between items-center border-b border-gray-300 bg-white h-[70px] px-5">
+    <div className="fixed top-0 z-10 w-full flex justify-between items-center border-b border-gray-300 bg-white h-[70px] px-5">
       <Breadcrumb>
         <BreadcrumbList>
-          {slug.length > 1
-            ? slug.map((item, index) => {
+          {decodedSlug.length > 1
+            ? decodedSlug.map((item, index) => {
                 return (
                   <>
-                    {index !== 1 && index !== 0 && (
+                    {item !== "dashboard" && (
                       <BreadcrumbItem key={index}>
-                        <BreadcrumbLink href={`/${slug.slice(0, index + 1).join("/")}`}>
+                        <BreadcrumbLink href={`/${decodedSlug.slice(0, index + 1).join("/")}`}>
                           {decodeURIComponent(capitalizeFirstLetter(item))}
                         </BreadcrumbLink>
                       </BreadcrumbItem>
                     )}
-                    {index !== 1 && index !== 0 && index !== slug.length - 1 && <BreadcrumbSeparator />}
+                    {index !== 0 && index !== decodedSlug.length - 1 && <BreadcrumbSeparator />}
                   </>
                 );
               })

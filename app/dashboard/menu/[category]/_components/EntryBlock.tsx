@@ -10,9 +10,11 @@ import { usePathname } from "next/navigation";
 type EntryBlockProps = {
   name: string;
   className?: string;
+  subCategoryName: string;
+  modif?: boolean;
 };
 
-export default function EntryBlock({ name, className }: EntryBlockProps) {
+export default function EntryBlock({ name, className, subCategoryName, modif }: EntryBlockProps) {
   const pathname = usePathname();
   const slug = pathname.split("/")[3];
   const decodedSlug = decodeURIComponent(slug);
@@ -30,16 +32,17 @@ export default function EntryBlock({ name, className }: EntryBlockProps) {
       ref={setNodeRef}
       style={style}
     >
-      <Link href={`/dashboard/menu/${decodedSlug}/${name}/edit`} className="p-4 grow">
+      <Link href={`/dashboard/menu/${decodedSlug}/${subCategoryName}/entry/${name}`} className="p-4 grow hover:underline">
         <div className="flex items-center gap-x-2">
           <LuChefHat className="size-5 mr-2" />
           <p>{name}</p>
         </div>
       </Link>
-      <div className="flex gap-x-4 items-center p-4">
+
+     {modif && <div className="flex gap-x-4 items-center p-4">
         <LuTrash2 className="size-5 cursor-pointer" />
         <MdDragIndicator className=" size-5 cursor-pointer" />
-      </div>
+      </div>}
     </div>
   );
 }

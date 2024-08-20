@@ -28,7 +28,7 @@ export default function SideBar() {
     logOut().then(() => router.push("/login"));
   };
   return (
-    <div className="sticky top-0 z-10 h-screen bottom-0 left-0 flex">
+    <div className="fixed top-0 z-10 h-screen bottom-0 left-0 flex">
       <div className="w-56 border-r border-gray-300 bg-white h-full flex flex-col justify-between">
         <div className="">
           <div className="h-[70px] border-b border-gray-300 flex justify-center items-center">

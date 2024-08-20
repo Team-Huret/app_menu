@@ -29,12 +29,10 @@ export default function DashboardLayout({
 
   if (isLoading) return <Loader />;
   return (
-    <div className="flex">
+    <div className="flex ml-56 mt-[70px]">
       <SideBar />
-      <div className="grow h-full">
-        <TopBar />
-        {children}
-      </div>
+      <TopBar />
+      {children}
     </div>
   );
 }

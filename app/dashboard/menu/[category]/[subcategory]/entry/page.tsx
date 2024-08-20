@@ -2,13 +2,13 @@
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import MenuTopBar from "../_components/MenuTopBar";
+import MenuTopBar from "./_components/MenuTopBar";
 import { labels, allergies } from "@/data/menu";
 import { useMenuStore } from "@/app/dashboard/menu/_store/useMenuStore";
-import AddOptionButton from "../_components/AddOptionButton";
-import CheckboxList from "../_components/CheckboxList";
-import PriceOption from "../_components/PriceOption";
-import InputFile from "../_components/InputFile";
+import AddOptionButton from "./_components/AddOptionButton";
+import CheckboxList from "./_components/CheckboxList";
+import PriceOption from "./_components/PriceOption";
+import InputFile from "./_components/InputFile";
 
 export default function Add() {
   const {

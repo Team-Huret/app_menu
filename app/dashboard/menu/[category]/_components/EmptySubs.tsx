@@ -1,12 +1,10 @@
-import DashedButton from "@/components/global/DashedButton";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { MdAdd } from "react-icons/md";
 import { Input } from "@/components/ui/input";
 import { HiOutlineFolderPlus } from "react-icons/hi2";
 import { Button } from "@/components/ui/button";
-import { addSubcategory } from "../_data/addSubcategory";
 
-export default function EmptyFields() {
+export default function EmptySubs() {
   return (
     <div className="w-full flex flex-col justify-center items-center">
       <p className="text-base mb-3">Nothing here yet, you can start by creating your first subcategory.</p>

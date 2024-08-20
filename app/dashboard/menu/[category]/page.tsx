@@ -1,32 +1,32 @@
 "use client";
 import { usePathname } from "next/navigation";
-import Subcategory from "./_components/Subcategory";
+import SubcategoryBlock from "./_components/SubcategoryBlock";
 import { arrayMove, SortableContext } from "@dnd-kit/sortable";
 import { DndContext } from "@dnd-kit/core";
 import { DragOverEvent } from "@dnd-kit/core";
-import { useGetSubcategories } from "@/app/dashboard/menu/[category]/_data/getSucategories";
+import { useGetCategory } from "./_data/getCategory";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { MdAdd } from "react-icons/md";
 import { Input } from "@/components/ui/input";
 import { HiOutlineFolderPlus } from "react-icons/hi2";
-import EmptyFields from "./_components/EmptyFields";
+import EmptySubs from "./_components/EmptySubs";
 import { Button } from "@/components/ui/button";
 
 export default function Category() {
   const pathname = usePathname();
-  const slug = pathname.split("/")[3];
-  const decodedSlug = decodeURIComponent(slug);
+  const slug = pathname.split("/").filter((item) => item !== "");
+  const decodedSlugParts = slug.map((item) => decodeURIComponent(item));
 
-  const { subCategories, setSubCategories, subCategoriesName, updateOrder } = useGetSubcategories(decodedSlug);
+  const { categoryData, subCategoriesName, setCategoryData } = useGetCategory(decodedSlugParts[2]);
 
-  if (subCategories.length === 0) {
-    return <EmptyFields />;
+  if (categoryData.length === 0) {
+    return <EmptySubs />;
   }
 
   const handleDragOver = (event: DragOverEvent) => {
     const { active, over } = event;
     if (over && active.id !== over.id) {
-      setSubCategories((prev) => {
+      setCategoryData((prev) => {
         const oldIndex = prev.findIndex((item) => item.name === active.id);
         const newIndex = prev.findIndex((item) => item.name === over.id);
         return arrayMove(prev, oldIndex, newIndex);
@@ -35,19 +35,18 @@ export default function Category() {
   };
 
   const handleDragEnd = () => {
-    updateOrder();
+    console.log("order updated");
   };
 
   return (
     <div className="w-full p-5 flex flex-col gap-5 max-w-[1100px] mx-auto">
       <DndContext onDragOver={handleDragOver} onDragEnd={handleDragEnd}>
         <SortableContext items={subCategoriesName}>
-          {subCategories.map((field, index) => {
-            return <Subcategory key={index} name={field.name} entries={field.data} />;
+          {categoryData.map((field, index) => {
+            return <SubcategoryBlock key={index} name={field.name} entries={field.data} />;
           })}
         </SortableContext>
       </DndContext>
-      <div className="h-[1500px]"></div>
       <Popover>
         <PopoverTrigger>
           <Button variant="dashed" className="w-full">
