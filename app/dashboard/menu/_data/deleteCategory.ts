@@ -14,3 +14,8 @@ export const deleteCategory = async (categoryName: string) => {
     console.log(error);
   }
 };
+
+// const handleDeleteCategory = (categoryName: string) => {
+//   setCategoriesName(categoriesName.filter((item) => item !== categoryName));
+//   deleteCategory(categoryName);
+// };

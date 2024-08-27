@@ -1,16 +1,16 @@
 {
   "event": [
     {
-      "id": "ZFVE8j2y5RX742ZKyx2G3", // auto generated
-      "name": "Mustache Takeover", // required for post
-      "description": "This is a description of the event", // required for post
-      "start_date": "2023-05-01", // required for post
-      "end_date": "2023-05-02", // required for post
-      "start_time": "10:00", // required for post
-      "end_time": "11:00", // required for post
-      "location": "The office", // required for post
-      "entry_fee": 300, // required for post
-      "image": "https://phuket.cafedelmar.com/wp-content/uploads/2024/06/SQ-size_MUTACHE-01_11zon.jpg" // required for post
+      "id": "ZFVE8j2y5RX742ZKyx2G3",
+      "name": "Mustache Takeover",
+      "description": "This is a description of the event",
+      "start_date": "2023-05-01",
+      "end_date": "2023-05-02",
+      "start_time": "10:00",
+      "end_time": "11:00",
+      "location": "The office",
+      "entry_fee": 300,
+      "image": "https://phuket.cafedelmar.com/wp-content/uploads/2024/06/SQ-size_MUTACHE-01_11zon.jpg"
     },
     {
       "id": "A1B2C3D4E5F6G7H8I9J0",

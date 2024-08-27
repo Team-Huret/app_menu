@@ -1,12 +1,12 @@
 export interface Category {
   ID: number;
-  CreatedAt: string;
-  UpdatedAt: string;
-  DeletedAt: string;
+  CreatedAt?: string;
+  UpdatedAt?: string;
+  DeletedAt?: string;
   Name: string;
-  Order: number;
-  MenuID: number;
-  Subcategories: Subcategory[];
+  Order?: number;
+  MenuID?: number;
+  Subcategories?: Subcategory[];
 }
 
 export interface Entry {

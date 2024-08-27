@@ -4,35 +4,30 @@ import { useState } from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { MdAdd } from "react-icons/md";
 import { Input } from "@/components/ui/input";
-import { useGetAllCategories } from "@/app/dashboard/menu/_data/getAllCategories";
+import { useMenuStore } from "../_store/useMenuStore";
 import { addCategory } from "@/app/dashboard/menu/_data/addCategory";
 import { DndContext } from "@dnd-kit/core";
 import { arrayMove, SortableContext } from "@dnd-kit/sortable";
 import { DragOverEvent } from "@dnd-kit/core";
 import { HiOutlineFolderPlus } from "react-icons/hi2";
 import { Button } from "@/components/ui/button";
-import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuTrigger } from "@/components/ui/context-menu";
-import { LuTrash } from "react-icons/lu";
-import { BiRename } from "react-icons/bi";
-import { deleteCategory } from "@/app/dashboard/menu/_data/deleteCategory";
+import { useUpdateOrder } from "@/app/dashboard/menu/_data/updateOrder";
 
 export default function MenuSideBar() {
   const [categoryName, setCategoryName] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const { categoriesName, setCategoriesName, updateOrder } = useGetAllCategories();
+  const { categoriesName, setCategoriesName, setCategories, categories } = useMenuStore();
+  const { updateOrder } = useUpdateOrder();
 
-  const handleAddCategory = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleAddCategory = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (categoryName) {
       setCategoriesName([...categoriesName, categoryName]);
-      addCategory(categoryName);
+      const newCategory = await addCategory(categoryName);
+      setCategories((prev) => {
+        return [...prev, newCategory];
+      });
       setCategoryName("");
     }
-  };
-
-  const handleDeleteCategory = (categoryName: string) => {
-    setCategoriesName(categoriesName.filter((item) => item !== categoryName));
-    deleteCategory(categoryName);
   };
 
   const handleDragOver = (event: DragOverEvent) => {
@@ -53,37 +48,15 @@ export default function MenuSideBar() {
     <div className="w-56 border-r border-gray-300 bg-white pt-5 px-2 sticky top-[70px]" style={{ height: "calc(100vh - 70px)" }}>
       <h3 className="mb-3 ml-2">Categories</h3>
       <div>
-        <ContextMenu>
-          <ContextMenuTrigger>
-            <DndContext onDragOver={handleDragOver} onDragEnd={handleDragEnd}>
-              <SortableContext items={categoriesName}>
-                {categoriesName.length > 0 ? (
-                  categoriesName.map((category: string, index: number) => (
-                    <Category
-                      onContextMenu={() => {
-                        setSelectedCategory(category);
-                      }}
-                      key={index}
-                      name={category}
-                    />
-                  ))
-                ) : (
-                  <p className="px-3 text-sm">No categories</p>
-                )}
-              </SortableContext>
-            </DndContext>
-          </ContextMenuTrigger>
-          <ContextMenuContent>
-            <ContextMenuItem className="cursor-pointer justify-between">
-              Rename
-              <BiRename className="size-3 cursor-pointer" />
-            </ContextMenuItem>
-            <ContextMenuItem className="cursor-pointer justify-between" onSelect={() => handleDeleteCategory(selectedCategory)}>
-              Delete
-              <LuTrash className="size-3 cursor-pointer" />
-            </ContextMenuItem>
-          </ContextMenuContent>
-        </ContextMenu>
+        <DndContext onDragOver={handleDragOver} onDragEnd={handleDragEnd}>
+          <SortableContext items={categoriesName}>
+            {categoriesName.length > 0 ? (
+              categoriesName.map((category: string, index: number) => <Category key={index} name={category} />)
+            ) : (
+              <p className="px-3 text-sm">No categories</p>
+            )}
+          </SortableContext>
+        </DndContext>
       </div>
       <div className="w-[88%] h-[1px] bg-gray-300 rounded-full mx-auto my-5"></div>
       <Popover>
