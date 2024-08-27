@@ -1,9 +1,7 @@
-import { doc, getDoc, setDoc } from "firebase/firestore";
-import { auth, db } from "@/firebase/config";
+import { auth } from "@/firebase/config";
 import { generateFirebaseAuthErrorMessage } from "./authError";
 import { FirebaseError } from "firebase/app";
 import { updateProfile } from "firebase/auth";
-import { serverTimestamp } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 export const signUpWithEmail = async (fullName: string, email: string, password: string) => {
@@ -15,25 +13,22 @@ export const signUpWithEmail = async (fullName: string, email: string, password:
       displayName: fullName,
     });
 
-    // Reference to the user document in Firestore
-    const userDocRef = doc(db, "users", user.uid);
+    // Add user to database
+    // const response = await fetch("https://app-menu-go.onrender.com/api/users", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Accept: "application/json",
+    //     "x-api-key": "ADMIN_4dddab9c-018e-4555-ae45-d219a5dbd83c",
+    //   },
+    //   body: JSON.stringify({
+    //     email: email,
+    //     full_name: fullName,
+    //   }),
+    // });
+    // const data = await response.json();
 
-    // Check if the user already exists
-    const userDoc = await getDoc(userDocRef);
-
-    if (userDoc.exists()) {
-      throw new Error("The email address is already in use by another account.");
-    } else {
-      // Add the user to Firestore if not already existing
-      await setDoc(userDocRef, {
-        uid: user.uid,
-        admin: false,
-        email: user.email,
-        full_name: fullName,
-        created_at: serverTimestamp(),
-      });
-      return { success: "Account created successfully" };
-    }
+    return { success: "Account created successfully" };
   } catch (error: unknown) {
     if (error instanceof FirebaseError) {
       throw new Error(generateFirebaseAuthErrorMessage(error));

@@ -57,20 +57,6 @@ export default function Signup() {
         .catch((error) => setError(error.message));
     });
   };
-  // Register with google function
-  const handleSignupGoogle = () => {
-    setSuccess("");
-    setError("");
-    execute(() => {
-      const req = logInWithGoogle();
-      return req
-        .then((data) => {
-          setSuccess(data.success);
-          setTimeout(() => router.push("/login"), 1500);
-        })
-        .catch((error) => setError(error.message));
-    });
-  };
   return (
     <div className="h-screen w-screen flex items-center justify-center p-3 sm:p-0">
       <Card className="mx-auto max-w-sm ">
@@ -102,9 +88,6 @@ export default function Signup() {
             <SuccessMessage message={success} />
             <Button className="w-full" onClick={handleSignupEmail} disabled={isLoading}>
               Create an account
-            </Button>
-            <Button variant="outline" className="w-full" onClick={handleSignupGoogle} disabled={isLoading}>
-              Sign up with Google
             </Button>
           </div>
           <div className="mt-4 text-center text-sm">

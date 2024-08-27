@@ -4,7 +4,7 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import Link from "next/link";
 
-export default function CategoryTab({ name }: { name: string }) {
+export default function CategoryTab({ name, onContextMenu }: { name: string; onContextMenu: () => void }) {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: name });
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -19,10 +19,11 @@ export default function CategoryTab({ name }: { name: string }) {
       {...listeners}
       ref={setNodeRef}
       style={style}
+      onContextMenu={onContextMenu}
     >
       <span className="flex items-center gap-x-2">
-        <LuFolders className="size-5" />
-        {name}
+        <LuFolders className="size-5 " />
+        <span className="truncate w-[75%]">{name}</span>
       </span>
       <MdDragIndicator className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-900 z-10" />
     </Link>

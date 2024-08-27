@@ -5,8 +5,8 @@ import { useRouter } from "next/navigation";
 export default function Menu() {
   const { categories } = useMenuStore();
   const router = useRouter();
-  if (categories.length == 0) {
-    router.push(`/dashboard/menu/${categories[0].name}`);
+  if (categories.length !== 0) {
+    router.push(`/dashboard/menu/${categories[0].Name}`);
   }
   return (
     <div className="w-full flex flex-col justify-center items-center">

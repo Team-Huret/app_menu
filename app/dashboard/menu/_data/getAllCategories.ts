@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useMenuStore } from "@/app/dashboard/menu/_store/useMenuStore";
-import categoriesMock from "@/mock/categories.json";
 import { Category, Menu } from "@/types/menu";
 
 export const useGetAllCategories = () => {
@@ -9,11 +8,19 @@ export const useGetAllCategories = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await fetch("https://api.mocki.io/v2/cge9r1ed/menu");
-        const data: Menu = await res.json();
-        console.log(data);
-        setCategories(data.menu as Category[]);
-        setCategoriesName(data.menu.map((category) => category.name));
+        const response = await fetch("https://app-menu-go.onrender.com/api/menu", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            "x-api-key": "13_singletest",
+          },
+        });
+        const data: { menu: Menu } = await response.json();
+        const categories = data.menu.Categories as Category[];
+        console.log(categories);
+        setCategories(categories);
+        setCategoriesName(categories.map((category) => category.Name));
       } catch (err) {
         console.log(err);
       }
@@ -22,7 +29,15 @@ export const useGetAllCategories = () => {
     fetchCategories();
   }, [setCategories, setCategoriesName]);
 
-  const updateOrder = () => {
+  const updateOrder = async () => {
+    const response = await fetch("https://app-menu-go.onrender.com/api/menu", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "x-api-key": "13_singletest",
+      },
+    });
     console.log("Order updated successfully");
   };
 
