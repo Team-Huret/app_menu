@@ -11,5 +11,6 @@ export default function CategoryLayout({
   const slug = pathname.split("/").filter((item) => item !== "");
   const decodedSlugParts = slug.map((item) => decodeURIComponent(item));
   useGetSubcategories(decodedSlugParts[2]);
+
   return <>{children}</>;
 }

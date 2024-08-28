@@ -8,13 +8,9 @@ export const useGetSubcategories = (categoryName: string) => {
 
   useEffect(() => {
     const category = categories.find((category) => category.Name === categoryName);
-    console.log(category);
     if (!category || !category.Subcategories) {
-      console.log("No category found");
       return;
     }
-    console.log(category);
-
     setCategoryId(category.ID);
     setSubcategories(category.Subcategories);
     setSubcategoriesName(category.Subcategories.map((field) => field.Name));

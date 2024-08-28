@@ -22,9 +22,30 @@ export default function MenuSkeleton() {
         <Skeleton className="w-full h-[30px] rounded-xl" />
       </div>
 
-      <div className="w-[50%] mx-auto flex flex-col justify-center items-center gap-2">
-        <Skeleton className="w-full h-3.5 rounded-xl" />
-        <Skeleton className="w-1/2 h-3.5 rounded-xl" />
+      <div className="w-full p-5 flex flex-col gap-5 max-w-[1100px] mx-auto">
+        <div className="border border-gray-300 rounded-lg bg-white">
+          <div className="group flex items-center justify-between gap-x-3 p-4 border-b border-gray-300">
+            <Skeleton className="size-7 rounded-[100%]" />
+            <Skeleton className="w-1/2 h-7 rounded-full" />
+          </div>
+          <div className="space-y-3 p-3">
+            <Skeleton className="w-full h-7 rounded-full " />
+            <Skeleton className="w-full h-7 rounded-full " />
+            <Skeleton className="w-full h-7 rounded-full " />
+          </div>
+        </div>
+        <div className="border border-gray-300 rounded-lg bg-white">
+          <div className="group flex items-center justify-between gap-x-3 p-4 border-b border-gray-300">
+            <Skeleton className="size-7 rounded-[100%]" />
+            <Skeleton className="w-1/2 h-7 rounded-full" />
+          </div>
+          <div className="space-y-3 p-3">
+            <Skeleton className="w-full h-7 rounded-full " />
+            <Skeleton className="w-full h-7 rounded-full " />
+            <Skeleton className="w-full h-7 rounded-full " />
+          </div>
+        </div>
+        <Skeleton className="w-full h-10 rounded-full " />
       </div>
     </div>
   );
