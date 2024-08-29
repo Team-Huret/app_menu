@@ -1,2 +1,3 @@
-export const labels = ["Vegan", "Vegetarian", "Gluten Free", "Dairy Free", "Nut Free", "Thai food", "Seafood", "Meat", "Peanut", "Tree Nut"];
-export const allergies = ["Dairy", "Egg", "Peanut", "Shellfish", "Soy", "Wheat", "Sesame", "Peanut", "Tree Nut"];
+export const badgeList = ["🔥 Popular", "👨‍🍳 Chef's Selection", "🏆 Best Seller", "👋 New"];
+export const labels = ["🌱 Organic", "🥗 Vegetarian", "🥦 Vegan", "🌾 Gluten Free", "☪️ Halal", "✡️ Kosher"];
+export const allergies = ["🍼 Milk", "🐣 Eggs", "🥜 Nuts", "🦞 Shellfish"];

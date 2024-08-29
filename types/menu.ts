@@ -26,6 +26,7 @@ export interface Entry {
 }
 
 export interface Subcategory {
+  ID: number;
   CategoryID: number;
   CreatedAt: string;
   UpdatedAt: string;
@@ -47,11 +48,6 @@ export interface Menu {
 }
 
 export interface Option {
-  ID: number;
-  CreatedAt: string;
-  UpdatedAt: string;
-  DeletedAt: string;
-  EntryID: number;
   Name: string;
   Price: number;
 }

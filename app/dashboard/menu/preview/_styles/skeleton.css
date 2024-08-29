@@ -1,0 +1,49 @@
+#menu_render_div .skeleton-container {
+  max-width: 1500px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+#menu_render_div .skeleton-header {
+  display: flex;
+  gap: 20px;
+}
+#menu_render_div .skeleton-header-row {
+  height: 80px;
+  width: 100%;
+  margin-bottom: 60px;
+}
+
+#menu_render_div .skeleton-title {
+  height: 20px;
+  width: 200px;
+  margin-bottom: 12px;
+}
+#menu_render_div .skeleton-rounded {
+  height: 80px;
+  width: 80px;
+  border-radius: 100%;
+}
+
+#menu_render_div .skeleton-entries-container {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+#menu_render_div .skeleton-entry {
+  height: 150px;
+  width: 100%;
+}
+.skeleton-ui {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  background: #f3f4f6;
+  border-radius: 16px;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}

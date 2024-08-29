@@ -10,11 +10,13 @@ export default function SelectInput({
   setValue,
   data,
   icon,
+  clearable,
 }: {
   value: string;
   setValue: (item: string) => void;
   data: string[];
   icon?: React.ReactNode;
+  clearable?: boolean;
 }) {
   const [open, setOpen] = useState(false);
   return (
@@ -28,7 +30,18 @@ export default function SelectInput({
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent>
+      <PopoverContent className="w-full px-5">
+        {clearable && (
+          <div
+            onClick={() => {
+              setValue("");
+              setOpen(false);
+            }}
+            className="px-3 py-1.5 hover:bg-gray-50 cursor-pointer rounded-lg flex items-center justify-start text-sm transition"
+          >
+            <Check className={`mr-2 size-4 opacity-0 `} />∅ Clear
+          </div>
+        )}
         {data.map((item) => (
           <div
             key={item}
@@ -36,7 +49,7 @@ export default function SelectInput({
               setValue(item);
               setOpen(false);
             }}
-            className="px-1.5 py-1.5 hover:bg-gray-50 cursor-pointer rounded-lg flex items-center justify-start text-sm transition"
+            className="px-3 py-1.5 hover:bg-gray-50 cursor-pointer rounded-lg flex items-center justify-start text-sm transition"
           >
             <Check className={`mr-2 size-4 ${value === item ? "opacity-100" : "opacity-0"}`} />
             {item}
