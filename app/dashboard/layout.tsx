@@ -1,5 +1,4 @@
 "use client";
-import TopBar from "@/components/layout/TopBar";
 import SideBar from "@/components/layout/SideBar";
 import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
@@ -28,9 +27,8 @@ export default function DashboardLayout({
 
   if (isLoading) return <Loader />;
   return (
-    <div className="flex ml-56 mt-[70px]">
+    <div className="flex ml-56">
       <SideBar />
-      <TopBar />
       {children}
     </div>
   );

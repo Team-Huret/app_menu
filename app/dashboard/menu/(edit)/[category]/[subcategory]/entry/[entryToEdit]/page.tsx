@@ -2,7 +2,6 @@
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import MenuTopBar from "../_components/EntryTopBar";
 import { labels, allergies } from "@/data/menu";
 import { useEntryStore } from "../_store/useEntryStore";
 import AddOptionButton from "../_components/AddOptionButton";
@@ -11,6 +10,7 @@ import PriceOption from "../_components/OptionBlock";
 import InputFile from "../_components/InputFile";
 import { useEffect } from "react";
 import EntryToEditTopBar from "./_components/EntryToEditTopBar";
+import { badgeList } from "@/data/menu";
 
 export default function Edit() {
   const {
@@ -29,13 +29,14 @@ export default function Edit() {
     setEntryOptions,
     setEntryImage,
     entryToEditName,
+    badge,
+    setBadge,
   } = useEntryStore();
 
   useEffect(() => {
     if (entryToEdit) {
       setEntryName(entryToEdit.Name);
       setEntryDescription(entryToEdit.Description);
-      setEntryImage(entryToEdit.Photo);
       setEntryPrice(entryToEdit.BasePrice);
       setEntryOptions(entryToEdit.Options);
       setEntryLabels(entryToEdit.Labels);
@@ -45,7 +46,7 @@ export default function Edit() {
 
   return (
     <div className="w-full">
-      <EntryToEditTopBar name={entryToEditName} />
+      <EntryToEditTopBar />
       <div className="w-full p-5 space-y-5">
         <div className="flex gap-5">
           <div className="grow space-y-5">
@@ -58,7 +59,7 @@ export default function Edit() {
               <Textarea placeholder="My business" onChange={(e) => setEntryDescription(e.target.value)} value={entryDescription} />
             </div>
           </div>
-          <InputFile />
+          <InputFile imageString={entryToEdit?.Photo} />
         </div>
         <div className="flex gap-8 ">
           <div className="basis-1/2 space-y-5">
@@ -69,8 +70,23 @@ export default function Edit() {
             <AddOptionButton />
           </div>
           <div className="grow basis-1/2 space-y-5">
-            <CheckboxList listName="Labels" listData={labels} state={entryLabels} setState={setEntryLabels} />
-            <CheckboxList listName="Allergies" listData={allergies} state={entryAllergies} setState={setEntryAllergies} />
+            <CheckboxList
+              listName="Badge"
+              message="Only one badge can be selected, it will stand out on the menu."
+              listData={badgeList}
+              state={badge}
+              setState={setBadge}
+              selectionType="single"
+            />
+            <CheckboxList listName="Labels" listData={labels} state={entryLabels} setState={setEntryLabels} selectionType="multiple" />
+            <CheckboxList
+              listName="Allergies"
+              message="Check if the entry contains any of the following allergies"
+              listData={allergies}
+              state={entryAllergies}
+              setState={setEntryAllergies}
+              selectionType="multiple"
+            />
           </div>
         </div>
       </div>

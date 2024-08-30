@@ -2,7 +2,7 @@
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { usePathname } from "next/navigation";
 import { capitalizeFirstLetter } from "@/lib/functions/string";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import TopBarTabs from "./TopBarTabs";
 
 export default function TopBar() {
   const pathname = usePathname();
@@ -31,12 +31,7 @@ export default function TopBar() {
             : null}
         </BreadcrumbList>
       </Breadcrumb>
-      <Tabs defaultValue="edit" className="w-[300px]">
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="edit">Edit</TabsTrigger>
-          <TabsTrigger value="preview">Preview</TabsTrigger>
-        </TabsList>
-      </Tabs>
+      <TopBarTabs />
     </div>
   );
 }

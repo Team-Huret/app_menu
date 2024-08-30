@@ -9,6 +9,9 @@ interface UseMenuStore {
 
   categoriesName: string[] | [];
   setCategoriesName: (value: SetStateAction<string[]>) => void;
+
+  view: string;
+  setView: (value: string) => void;
 }
 // Create the zustand store
 export const useMenuStore = create<UseMenuStore>((set) => ({
@@ -23,4 +26,7 @@ export const useMenuStore = create<UseMenuStore>((set) => ({
     set((state) => ({
       categoriesName: typeof value === "function" ? value(state.categoriesName) : value,
     })),
+
+  view: "edit",
+  setView: (value: string) => set({ view: value }),
 }));

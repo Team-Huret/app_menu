@@ -4,8 +4,8 @@ import { useState, ChangeEvent } from "react";
 import Image from "next/image";
 import { useEntryStore } from "../_store/useEntryStore";
 
-export default function InputFile() {
-  const [image, setImage] = useState<string | null>(null);
+export default function InputFile({ imageString }: { imageString?: string }) {
+  const [image, setImage] = useState<string | null>(imageString || null);
   const { setEntryImage } = useEntryStore();
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {

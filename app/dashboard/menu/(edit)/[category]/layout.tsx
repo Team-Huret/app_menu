@@ -1,7 +1,6 @@
 "use client";
 import { useGetSubcategories } from "./_data/getSubcategories";
 import { usePathname } from "next/navigation";
-
 export default function CategoryLayout({
   children,
 }: Readonly<{

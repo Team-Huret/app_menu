@@ -37,6 +37,7 @@ export default function CheckboxList({ listName, listData, state, setState, mess
       }
     }
   };
+  console.log(state);
 
   return (
     <div className="w-full space-y-2">
@@ -57,16 +58,21 @@ export default function CheckboxList({ listName, listData, state, setState, mess
         )}
       </div>
       <div className="flex flex-wrap gap-2">
-        {listData.map((label, index) => (
-          <div key={index} className="flex gap-x-2 items-center w-[180px]">
-            <Checkbox
-              value={label}
-              checked={selectionType === "single" ? state === label : (state as string[]).includes(label)}
-              onCheckedChange={(checked: boolean) => handleChecked(checked, label)}
-            />
-            <span className="text-sm">{label}</span>
-          </div>
-        ))}
+        {listData.map((label, index) => {
+          if (label === "🍼 Milk") {
+            console.log(label);
+          }
+          return (
+            <div key={index} className="flex gap-x-2 items-center w-[180px]">
+              <Checkbox
+                value={label}
+                checked={selectionType === "single" ? state === label : (state as string[]).includes(label)}
+                onCheckedChange={(checked: boolean) => handleChecked(checked, label)}
+              />
+              <span className="text-sm">{label}</span>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
