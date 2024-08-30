@@ -32,7 +32,7 @@ export default function SideBar() {
       <div className="w-56 border-r border-gray-300 bg-white h-full flex flex-col justify-between">
         <div className="">
           <div className="h-[70px] border-b border-gray-300 flex justify-center items-center">
-            <h2 className="font-bold text-3xl/3">Me&You</h2>
+            <h2 className="font-bold text-3xl/3">AppMenu</h2>
           </div>
           <div className="p-2 py-5 space-y-1 border-b border-gray-300">
             {navLinks.map((navLink, index) => (
