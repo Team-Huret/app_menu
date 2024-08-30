@@ -22,8 +22,20 @@ export const addEntry = async (entryData: EntryData) => {
     formData.append("description", entryData.description);
     formData.append("image", entryData.photo ?? "");
     formData.append("base_price", entryData.price.toString());
-    // formData.append("labels", entryData.labels);
-    // formData.append("allergies", entryData.allergies);
+    if (entryData.labels.length > 0) {
+      for (const label of entryData.labels) {
+        formData.append("labels", label);
+      }
+    } else {
+      formData.append("labels", "");
+    }
+    if (entryData.allergies.length > 0) {
+      for (const allergy of entryData.allergies) {
+        formData.append("allergies", allergy);
+      }
+    } else {
+      formData.append("allergies", "");
+    }
     // formData.append("options", JSON.stringify([]));
     formData.append("badge", entryData.badge);
     formData.append("subcategory_id", entryData.subcategory_id.toString());

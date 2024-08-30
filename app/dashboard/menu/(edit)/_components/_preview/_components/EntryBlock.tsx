@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Entry } from "@/types/menu";
+import Badge from "./Badge";
+import Popup from "./Popup";
 
 export function EntryBlock({ item }: { item: Entry }) {
   const [popupState, setPopupState] = useState(false);
@@ -9,6 +11,7 @@ export function EntryBlock({ item }: { item: Entry }) {
     <div>
       <div className="entry-container" key={item.ID} onClick={() => setPopupState(true)}>
         <div className="entry-content">
+          {item.Badge && <Badge badge={item.Badge} />}
           <div className="entry-content-top-row">
             <span className="entry-title">{item.Name}</span>
             <span className="entry-price">฿ {item.BasePrice}</span>
@@ -31,7 +34,7 @@ export function EntryBlock({ item }: { item: Entry }) {
           </div>
         )}
       </div>
-      {/* {popupState && <Popup {...item} closePopup={() => setPopupState(!popupState)} />} */}
+      {popupState && <Popup {...item} closePopup={() => setPopupState(!popupState)} />}
     </div>
   );
 }

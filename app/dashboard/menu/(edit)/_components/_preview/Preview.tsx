@@ -60,7 +60,7 @@ export default function Preview() {
             })}
           </div>
           <div className="header-search-container">
-            <input placeholder="Search..." className="header-search-input" onChange={(e) => setSearchValue(e.target.value)} />
+            <input placeholder="Search..." className="header-search-input" onChange={(e) => console.log("search")} />
             <LuSearch className="header-search-icon" />
           </div>
         </div>

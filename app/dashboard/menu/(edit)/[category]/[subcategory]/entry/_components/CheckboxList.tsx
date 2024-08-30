@@ -22,6 +22,9 @@ type CheckboxListProps = {
 } & (SingleSelectionProps | MultipleSelectionProps);
 
 export default function CheckboxList({ listName, listData, state, setState, message, selectionType }: CheckboxListProps) {
+  if (selectionType === "single") {
+    console.log(state);
+  }
   const handleChecked = (checked: boolean, value: string) => {
     if (selectionType === "single") {
       if (checked) {
@@ -40,7 +43,7 @@ export default function CheckboxList({ listName, listData, state, setState, mess
   console.log(state);
 
   return (
-    <div className="w-full space-y-2">
+    <div className="w-full space-y-3 p-5 border border-border rounded-lg">
       <div className="flex items-center gap-x-2">
         <Label>{listName}</Label>
 
@@ -59,9 +62,6 @@ export default function CheckboxList({ listName, listData, state, setState, mess
       </div>
       <div className="flex flex-wrap gap-2">
         {listData.map((label, index) => {
-          if (label === "🍼 Milk") {
-            console.log(label);
-          }
           return (
             <div key={index} className="flex gap-x-2 items-center w-[180px]">
               <Checkbox

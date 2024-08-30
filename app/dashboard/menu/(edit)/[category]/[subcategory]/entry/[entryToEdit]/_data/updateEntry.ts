@@ -50,11 +50,23 @@ export const useUpdateEntry = () => {
     formData.append("name", entryName);
     formData.append("description", entryDescription);
     formData.append("base_price", entryPrice.toString());
-    // formData.append("labels", entryLabels);
-    // formData.append("allergies", entryAllergies);
+    if (entryLabels.length > 0) {
+      for (const label of entryLabels) {
+        formData.append("labels", label);
+      }
+    } else {
+      formData.append("labels", "");
+    }
+    if (entryAllergies.length > 0) {
+      for (const allergy of entryAllergies) {
+        formData.append("allergies", allergy);
+      }
+    } else {
+      formData.append("allergies", "");
+    }
     // formData.append("options", entryOptions);
-    //formData.append("badge", badge);
-    if (entryImage) {
+    formData.append("badge", badge);
+    if (entryImage !== null) {
       formData.append("image", entryImage);
     }
 

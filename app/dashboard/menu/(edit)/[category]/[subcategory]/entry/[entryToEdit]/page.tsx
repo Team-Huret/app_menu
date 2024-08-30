@@ -41,6 +41,7 @@ export default function Edit() {
       setEntryOptions(entryToEdit.Options);
       setEntryLabels(entryToEdit.Labels);
       setEntryAllergies(entryToEdit.Allergies);
+      setBadge(entryToEdit.Badge);
     }
   }, [entryToEdit]);
 

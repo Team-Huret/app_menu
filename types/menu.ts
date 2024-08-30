@@ -23,6 +23,7 @@ export interface Entry {
   BasePrice: number;
   Options: Option[];
   SubcategoryID: number;
+  Badge: string;
 }
 
 export interface Subcategory {
