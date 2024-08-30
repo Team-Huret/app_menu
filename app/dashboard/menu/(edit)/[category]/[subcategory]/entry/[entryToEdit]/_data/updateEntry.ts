@@ -65,7 +65,11 @@ export const useUpdateEntry = () => {
       formData.append("allergies", "");
     }
     // formData.append("options", entryOptions);
-    formData.append("badge", badge);
+    if (badge === "") {
+      formData.append("badge", null);
+    } else {
+      formData.append("badge", badge);
+    }
     if (entryImage !== null) {
       formData.append("image", entryImage);
     }
